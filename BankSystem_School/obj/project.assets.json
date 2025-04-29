@@ -1673,31 +1673,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Yuu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BankSystem_School\\BankSystem_School\\BankSystem_School.csproj",
+      "projectUniqueName": "F:\\devset\\juu\\BankSystem_School\\BankSystem_School\\BankSystem_School.csproj",
       "projectName": "BankSystem_School",
-      "projectPath": "C:\\BankSystem_School\\BankSystem_School\\BankSystem_School.csproj",
-      "packagesPath": "C:\\Users\\Yuu\\.nuget\\packages\\",
-      "outputPath": "C:\\BankSystem_School\\BankSystem_School\\obj\\",
+      "projectPath": "F:\\devset\\juu\\BankSystem_School\\BankSystem_School\\BankSystem_School.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "F:\\devset\\juu\\BankSystem_School\\BankSystem_School\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Yuu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
