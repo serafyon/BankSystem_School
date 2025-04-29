@@ -4,7 +4,8 @@ using BankSystem_School.Model;
 namespace BankSystem_School;
 
 static class Program
-{
+{    /*
+
     static void TestCustomer(string cid, string name, string email, string phone, string password)
     {
         Customer_Data data = new Customer_Data();
@@ -26,18 +27,19 @@ static class Program
         {
             Console.WriteLine("your code fucking sucks stop using tab");
         }
-        
+
         // read
         var customers = data.GetCustomers();
         foreach (var customer in customers)
         {
             Console.WriteLine($"{customer.CustomerID}, {customer.Name}, {customer.Email}, {customer.Phone}");
         }
-        
+
         /*
          * Console.WriteLine("Deleting the fucking things");
         data.DeleteAllCustomers(c);
-         */
+         *
+      * /
 
         Console.Read();
     }
@@ -107,8 +109,9 @@ static class Program
         }
         
         Console.Read();
-    }
     
+       
+        */
     static void Main()
     {
         
@@ -127,5 +130,9 @@ static class Program
          * 
          */
 
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+        Application.Run(new Form1());
+        
     }
 }
