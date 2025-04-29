@@ -8,7 +8,7 @@ public class Account_Data
 {
     // original: C:\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf
     // F:\devset\juu\BankSystem_School\BankSystem_School\Database\DB_bank.mdf
-    private string _conn = ConfigurationManager.ConnectionStrings[@"F:\devset\juu\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf"].ConnectionString;
+    private string _conn = ConfigurationManager.ConnectionStrings[@"C:\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf"].ConnectionString;
     
     
     //account table accessor (read)

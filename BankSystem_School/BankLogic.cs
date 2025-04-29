@@ -45,8 +45,8 @@ public class BankLogic
     //customerID received from matching the login credentials to an existing customerID foreign key (from accounts)
     //
     {
-        string query = "select a.c_AccountID, a.d_Balance, a.c_CustomerID" +
-                       "from Accounts a" +
+        string query = "select a.c_AccountID, a.d_Balance, a.c_CustomerID " +
+                       "from Accounts a " +
                        "where a.c_CustomerID = @customerID"; // does this even work?? what was i trying to achieve??
 
         using (SqlConnection con = new SqlConnection(conn))
@@ -67,7 +67,6 @@ public class BankLogic
                     CustomerID = reader["c_CustomerID"].ToString(),
                     AccountType = null,
                     Balance = (decimal)reader["d_Balance"],
-                    Password = null
                 };
                 return account.AccountID;
                 //this returns the account id for now
@@ -212,7 +211,7 @@ public class BankLogic
         {
             conn.Open();
             string query =
-                "select count(*) from Customers where Email = @email";
+                "select count(*) from Customers where v_Email = @email";
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -233,7 +232,7 @@ public class BankLogic
         {
             conn.Open();
             string query =
-                "select count(*) from Accounts where AccountNumber = @accountNumber";
+                "select count(*) from Accounts where c_AccountID = @accountNumber";
 
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
@@ -279,7 +278,11 @@ public class BankLogic
             CustomerID = custId.ToString(),
             Name = name,
             Email = email,
-            Phone = phone
+            Phone = phone,
+            LName = null,
+            MName = null,
+            Password = null,
+            PIN = null
         };
 
         //call now :333
@@ -332,7 +335,6 @@ public class BankLogic
             CustomerID = null, //needs to refer to current login ID
             AccountType = acctype,
             Balance = balance,
-            Password = password
         };
         
         // calls
