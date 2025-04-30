@@ -46,6 +46,7 @@ partial class Form4
         label6 = new Label();
         textBox6 = new TextBox();
         label7 = new Label();
+        label8 = new Label();
         panel2.SuspendLayout();
         SuspendLayout();
         // 
@@ -64,6 +65,7 @@ partial class Form4
         // panel2
         // 
         panel2.BackColor = Color.FromArgb(2, 0, 46);
+        panel2.Controls.Add(label8);
         panel2.Controls.Add(label1);
         panel2.Location = new Point(-134, -2);
         panel2.Name = "panel2";
@@ -198,6 +200,17 @@ partial class Form4
         label7.TabIndex = 22;
         label7.Text = "Password";
         // 
+        // label8
+        // 
+        label8.Cursor = Cursors.Hand;
+        label8.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        label8.ForeColor = Color.LightGray;
+        label8.Location = new Point(146, -13);
+        label8.Name = "label8";
+        label8.Size = new Size(68, 49);
+        label8.TabIndex = 41;
+        label8.Text = "↼";
+        // 
         // Form4
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -245,4 +258,5 @@ partial class Form4
     private Label label6;
     private TextBox textBox6;
     private Label label7;
+    private Label label8;
 }

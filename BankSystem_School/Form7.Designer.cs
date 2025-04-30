@@ -35,12 +35,14 @@
             label2 = new Label();
             label3 = new Label();
             comboBox1 = new ComboBox();
+            label4 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(2, 0, 46);
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(-134, -1);
             panel2.Name = "panel2";
@@ -114,6 +116,17 @@
             comboBox1.Size = new Size(441, 28);
             comboBox1.TabIndex = 25;
             // 
+            // label4
+            // 
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(146, -14);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 49);
+            label4.TabIndex = 41;
+            label4.Text = "↼";
+            // 
             // Form7
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -144,5 +157,6 @@
         private Label label2;
         private Label label3;
         private ComboBox comboBox1;
+        private Label label4;
     }
 }

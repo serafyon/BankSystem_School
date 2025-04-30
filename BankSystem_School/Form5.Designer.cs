@@ -35,12 +35,14 @@
             label2 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
+            label4 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(2, 0, 46);
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(-135, -1);
             panel2.Name = "panel2";
@@ -112,6 +114,17 @@
             label3.TabIndex = 14;
             label3.Text = "Email";
             // 
+            // label4
+            // 
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(147, -13);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 49);
+            label4.TabIndex = 41;
+            label4.Text = "↼";
+            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -142,5 +155,6 @@
         private Label label2;
         private TextBox textBox1;
         private Label label3;
+        private Label label4;
     }
 }

@@ -43,6 +43,7 @@
             label5 = new Label();
             balance = new Label();
             label7 = new Label();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -129,6 +130,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(label8);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(-13, -12);
             panel2.Name = "panel2";
@@ -214,6 +216,17 @@
             label7.TabIndex = 5;
             label7.Text = "Account Balance";
             // 
+            // label8
+            // 
+            label8.Cursor = Cursors.Hand;
+            label8.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.LightGray;
+            label8.Location = new Point(25, -3);
+            label8.Name = "label8";
+            label8.Size = new Size(68, 49);
+            label8.TabIndex = 41;
+            label8.Text = "↼";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -256,5 +269,6 @@
         private Label label4;
         private TextBox textBox1;
         private Label label6;
+        private Label label8;
     }
 }
