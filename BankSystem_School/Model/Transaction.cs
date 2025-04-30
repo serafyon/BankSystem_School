@@ -2,7 +2,8 @@
 
 public class Transaction
 {
-    public required string TransactionID { get; set; }       //c_TransactionID char 10
+    //TODO: NEED THE TRANSACTION ID ONLY INCREMENT. TID is only settable.
+    public string TransactionID { get; set; }       //c_TransactionID char 10
     public required string AccountID { get; set; }           //c_AccountID char 10 Foreign
     public required string TransactionType { get; set; }     //v_TransactionType varchar 20
     public required decimal Amount { get; set; }             //d_Amount decimal 18,2

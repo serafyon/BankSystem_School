@@ -8,7 +8,7 @@ public class Customer_Data
 {
     // original: C:\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf
     // F:\devset\juu\BankSystem_School\BankSystem_School\Database\DB_bank.mdf
-    private string _conn = ConfigurationManager.ConnectionStrings[@"F:\devset\juu\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf"].ConnectionString;
+    private string _conn = DatabaseConnector.ConnectorString;
     
     // customer table accessor (read)
     public List<Customer> GetCustomers()
@@ -47,7 +47,7 @@ public class Customer_Data
         using (SqlConnection connection = new SqlConnection(_conn))
         {
             string query =
-                "insert into Customers (c_CustomerID,v_LName, v_Name, v_MName, v_Email, v_Phone, v_Password, v_PIN) VALUES (@c_CustomerID, @v_LName, @v_Name, @v_MName, @v_Email, @v_Phone, @v_Password, @v_PIN)";
+                "insert into Customers (c_CustomerID,v_LName, v_Name, v_MName, v_Email, v_Phone, v_Password) VALUES (@c_CustomerID, @v_LName, @v_Name, @v_MName, @v_Email, @v_Phone, @v_Password)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@c_CustomerID", customer.CustomerID);
             command.Parameters.AddWithValue("@v_LName", customer.LName);
@@ -109,7 +109,7 @@ public class Customer_Data
         using (SqlConnection connection = new SqlConnection(_conn))
         {
             string query =
-                "delete from Customers";
+                "delete * from Customers";
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
             
