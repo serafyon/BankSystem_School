@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace BankSystem_School
 {
-    public partial class Form3: Form
+    public partial class Form3 : Form
     {
         public Form3()
         {
             InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

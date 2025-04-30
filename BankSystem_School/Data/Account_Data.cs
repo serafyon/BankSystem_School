@@ -30,7 +30,8 @@ public class Account_Data
                     AccountID = (string)reader["c_AccountID"],
                     CustomerID = (string)reader["c_CustomerID"],
                     AccountType = (string)reader["v_AccountType"],
-                    Balance = Convert.ToDecimal(reader["d_Balance"])
+                    Balance = Convert.ToDecimal(reader["d_Balance"]),
+                    PIN = (string)reader["PIN"]
                 });
             }
             connection.Close();
@@ -157,7 +158,8 @@ public class Account_Data
                     AccountID = (string)reader["c_AccountID"],
                     CustomerID = (string)reader["c_CustomerID"],
                     AccountType = (string)reader["v_AccountType"],
-                    Balance = Convert.ToDecimal(reader["d_Balance"])
+                    Balance = Convert.ToDecimal(reader["d_Balance"]),
+                    PIN = (string)reader["PIN"]
                 });
             }
             connection.Close();

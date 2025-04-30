@@ -3,4 +3,6 @@
   &lt;Assembly Path="C:\BankSystem_School\BankSystem_School\bin\Debug\net9.0-windows\Azure.Core.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\BankSystem_School\BankSystem_School\bin\Debug\net9.0-windows\BankSystem_School.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=BankSystem_005FSchool_002FProperties_002FResources/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
 	</wpf:ResourceDictionary>

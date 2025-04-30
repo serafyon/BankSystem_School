@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            textBox2 = new TextBox();
+            label4 = new Label();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            label3 = new Label();
             withdraw = new Button();
             panel2 = new Panel();
             label1 = new Label();
@@ -38,11 +43,6 @@
             label5 = new Label();
             balance = new Label();
             label7 = new Label();
-            label3 = new Label();
-            textBox1 = new TextBox();
-            label4 = new Label();
-            textBox2 = new TextBox();
-            label6 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -61,6 +61,59 @@
             panel1.Size = new Size(573, 601);
             panel1.TabIndex = 0;
             panel1.Paint += panel2_Paint;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(29, 420);
+            textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
+            textBox2.Size = new Size(444, 27);
+            textBox2.TabIndex = 9;
+            textBox2.Text = "0000";
+            textBox2.UseSystemPasswordChar = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(32, 353);
+            label4.Name = "label4";
+            label4.Size = new Size(238, 41);
+            label4.TabIndex = 8;
+            label4.Text = "Security Pincode";
+            label4.Click += label4_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(32, 130);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(441, 27);
+            textBox1.TabIndex = 7;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.LightGray;
+            label6.Location = new Point(479, 130);
+            label6.Name = "label6";
+            label6.Size = new Size(47, 25);
+            label6.TabIndex = 1;
+            label6.Text = "USD";
+            label6.Click += label6_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.LightGray;
+            label3.Location = new Point(32, 71);
+            label3.Name = "label3";
+            label3.Size = new Size(228, 41);
+            label3.TabIndex = 6;
+            label3.Text = "Desired Balance";
+            label3.Click += label3_Click;
             // 
             // withdraw
             // 
@@ -166,58 +219,6 @@
             label7.Size = new Size(141, 25);
             label7.TabIndex = 5;
             label7.Text = "Account Balance";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.LightGray;
-            label3.Location = new Point(32, 71);
-            label3.Name = "label3";
-            label3.Size = new Size(228, 41);
-            label3.TabIndex = 6;
-            label3.Text = "Desired Balance";
-            label3.Click += label3_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(32, 130);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(441, 27);
-            textBox1.TabIndex = 7;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(32, 353);
-            label4.Name = "label4";
-            label4.Size = new Size(238, 41);
-            label4.TabIndex = 8;
-            label4.Text = "Security Pincode";
-            label4.Click += label4_Click;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(29, 420);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(444, 27);
-            textBox2.TabIndex = 9;
-            textBox2.Text = "0000";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.LightGray;
-            label6.Location = new Point(479, 130);
-            label6.Name = "label6";
-            label6.Size = new Size(47, 25);
-            label6.TabIndex = 1;
-            label6.Text = "USD";
-            label6.Click += label6_Click;
             // 
             // Form2
             // 
