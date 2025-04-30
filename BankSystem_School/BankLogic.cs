@@ -67,6 +67,7 @@ public class BankLogic
                     CustomerID = reader["c_CustomerID"].ToString(),
                     AccountType = null,
                     Balance = (decimal)reader["d_Balance"],
+                    PIN = reader["d_PIN"].ToString(),
                 };
                 return account.AccountID;
                 //this returns the account id for now
@@ -281,8 +282,7 @@ public class BankLogic
             Phone = phone,
             LName = null,
             MName = null,
-            Password = null,
-            PIN = null
+            Password = null
         };
 
         //call now :333
@@ -308,7 +308,7 @@ public class BankLogic
     }
     
     //check customer, acc duplicate, and negative balance input
-    public bool BCreateAccount(Account account, string acctype, decimal balance, string password)
+    public bool BCreateAccount(Account account, string acctype, decimal balance, string password, string pin)
     {
         //checks
         if (!IsCustomerExist(account.CustomerID))
@@ -335,6 +335,7 @@ public class BankLogic
             CustomerID = null, //needs to refer to current login ID
             AccountType = acctype,
             Balance = balance,
+            PIN = pin
         };
         
         // calls

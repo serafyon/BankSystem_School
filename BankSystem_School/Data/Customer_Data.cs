@@ -33,8 +33,7 @@ public class Customer_Data
                     MName = (string)reader["MName"],
                     Email = (string)reader["v_Email"],
                     Phone = (string)reader["v_Phone"],
-                    Password = (string)reader["v_Password"],
-                    PIN = (string)reader["v_PIN"],
+                    Password = (string)reader["v_Password"]
                 });
             }
             connection.Close();
@@ -57,7 +56,6 @@ public class Customer_Data
             command.Parameters.AddWithValue("@v_Email", customer.Email);
             command.Parameters.AddWithValue("@v_Phone", customer.Phone);
             command.Parameters.AddWithValue("@v_Password", customer.Password);
-            command.Parameters.AddWithValue("@v_PIN", customer.PIN);
             connection.Open();
             
             
@@ -84,7 +82,6 @@ public class Customer_Data
             command.Parameters.AddWithValue("@email", customer.Email);
             command.Parameters.AddWithValue("@phone", customer.Phone);
             command.Parameters.AddWithValue("@password", customer.Password);
-            command.Parameters.AddWithValue("@PIN", customer.PIN);
             connection.Open();
             
             return command.ExecuteNonQuery() > 0;
@@ -217,8 +214,7 @@ public class Customer_Data
                     MName = (string)reader["MName"],
                     Email = (string)reader["v_Email"],
                     Phone = (string)reader["v_Phone"],
-                    Password = (string)reader["v_Password"],
-                    PIN = (string)reader["v_PIN"],
+                    Password = (string)reader["v_Password"]
                 });
             }
             connection.Close();
