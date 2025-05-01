@@ -8,7 +8,7 @@ public class Account_Data
 {
     // original: C:\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf
     // F:\devset\juu\BankSystem_School\BankSystem_School\Database\DB_bank.mdf
-    private string _conn = ConfigurationManager.ConnectionStrings[@"C:\BankSystem_School\BankSystem_School\Database\DB_Bank.mdf"].ConnectionString;
+    private static string _conn = DatabaseConnector.ConnectorString;
     
     
     //account table accessor (read)
@@ -104,7 +104,7 @@ public class Account_Data
     ///  </summary>
     /// <param name="customerID">Must be supplied by frontend</param>
     /// <returns>A string with account ID.</returns>
-    public string FetchAccountID(string customerID)
+    public static string FetchAccountID(string customerID)
     {
         // supplied by frontend, will use the current customer ID in runtime:
         string cID = customerID;
@@ -167,18 +167,116 @@ public class Account_Data
         return account;
     }
     
-    //TODO
-    public bool TransactionManager(Account account, string mode)
+    //TODO ( sorry brain hurty, figured i can't use the same things unless you can compactify it. if you can, go ahead, sure! :D )
+    //I do THINK if you can manage to compute and make a transaction object via windows forms and store things temporarily
+    //using hidden textboxes or variables within form.cs's, you can basically kill some of the lines here with it.
+    //I'm just basically laying down the logic here. -Sok
+    public bool TransactionManager(Account account, Transaction transaction, string mode, decimal amount)
     {
+        int flag = 0; // for debugging, I like using them especially since C# doesn't like throwing specific user errors.
+        Transaction_Data trans = new Transaction_Data();
+        List<Account> original = FetchAccountDetail(account.CustomerID);
+        if (original[0].AccountID != account.AccountID)
+        {
+            // immediately terminate if account id doesn't come up.
+            Console.WriteLine("Account ID not found in database! Please try again!");
+            return false;
+        }
+        decimal currentAmount = original[0].Balance;
+        decimal amountToAdd = amount;
+        
         using SqlConnection connection = new SqlConnection(_conn);
+        
         {
             string query =
-                "update Accounts set v_AccountType = @c_AccountType, d_Balance = @d_Balance where c_AccountID = @c_AccountID";
+                "update Accounts set d_Balance = @d_Balance where c_AccountID = @c_AccountID and c_CustomerID = @c_CustomerID";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@c_AccountID", account.AccountID);
-            command.Parameters.AddWithValue("@d_Balance", account.Balance);
-            command.Parameters.AddWithValue("@c_AccountType", account.AccountType);
-            connection.Open();
+            
+            // Account modifier starts here
+            switch (mode)
+            {
+                case "deposit":
+                    decimal depositAmount = currentAmount + amountToAdd;
+                    command.Parameters.AddWithValue("@c_AccountID", account.AccountID);
+                    command.Parameters.AddWithValue("@c_CustomerID", account.CustomerID);
+                    command.Parameters.AddWithValue("@d_Balance", depositAmount);
+                    // command.Parameters.AddWithValue("@c_AccountType", account.AccountType);
+                    connection.Open();
+                    flag = 1;
+                    break;
+                    
+                case "withdraw":
+                    decimal withdrawAmount = currentAmount - amountToAdd;
+                    command.Parameters.AddWithValue("@c_AccountID", account.AccountID);
+                    command.Parameters.AddWithValue("@c_CustomerID", account.CustomerID);
+                    command.Parameters.AddWithValue("@d_Balance", withdrawAmount);
+                    // command.Parameters.AddWithValue("@c_AccountType", account.AccountType);
+                    connection.Open();
+                    flag = 1;
+                    break;
+                default:
+                    // set default so it doesn't bork itself.
+                    flag = 0;
+                    Console.WriteLine("Invalid mode! Account balance not modified!");
+                    break;
+            }
+            
+            //logger starts here.
+            switch (mode)
+            {
+                case "deposit":
+                    decimal depositAmount = currentAmount + amountToAdd;
+                    Transaction logTransaction = new Transaction
+                    {
+                        AccountID = account.AccountID,
+                        AfterBalance = depositAmount,
+                        Amount = amount,
+                        PreviousBalance = currentAmount,
+                        Purpose = transaction.Purpose,
+                        TransactionType = "Deposit",
+                        TransactionDate = transaction.TransactionDate
+                    };
+                    trans.TransactionLogger(logTransaction, account, "deposit");
+                    flag = 2;
+                    break;
+                case "withdraw":
+                    decimal withdrawAmount = currentAmount - amountToAdd;
+                    Transaction logTransaction2 = new Transaction
+                    {
+                        AccountID = account.AccountID,
+                        AfterBalance = withdrawAmount,
+                        Amount = amount,
+                        PreviousBalance = currentAmount,
+                        Purpose = transaction.Purpose,
+                        TransactionType = "Deposit",
+                        TransactionDate = transaction.TransactionDate
+                    };
+                    trans.TransactionLogger(logTransaction2, account, "withdraw");
+                    flag = 2;
+                    break;
+                default:
+                    // set default so it doesn't bork itself.
+                    flag = 1;
+                    Console.WriteLine("Invalid mode! Transaction logger not logging!");
+                    break;
+            }
+
+            //FLAG DEBUG ONLY
+            switch (flag)
+            {
+                case 0:
+                    Console.WriteLine("Entire thing did not work.");
+                    break;
+                case 1:
+                    Console.WriteLine("Only Account worked.");
+                    break;
+                case 2:
+                    Console.WriteLine("Accounts and Transact worked. Code is good.");
+                    break;
+                default:
+                    Console.WriteLine("Entire thing did not work AT ALL.");
+                    break;
+            }
             
             return command.ExecuteNonQuery() > 0;
         }
