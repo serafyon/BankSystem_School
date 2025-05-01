@@ -2,6 +2,7 @@
 using BankSystem_School.Data;
 using BankSystem_School.Model;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 
 namespace BankSystem_School;
 
@@ -18,6 +19,19 @@ public class BankLogic
     private Customer_Data _customerData = new Customer_Data();
     private Account_Data _accountData = new Account_Data();
     private Transaction_Data _transactionData = new Transaction_Data();
+    private long custId;
+    private long accId;
+
+    public string getCustId()
+    {
+        Console.WriteLine($"Getting Cust ID {custId.ToString()}");
+        return this.custId.ToString();
+    }
+
+    public string getAccId()
+    {
+        return this.accId.ToString();
+    }
 
     /*TODO:
      * Generate Transaction ID
@@ -32,12 +46,96 @@ public class BankLogic
      * GetTransactionHistory
      */
 
+
+    public bool ValidateSignIn(string email, string password)
+    {
+        using (SqlConnection con = new SqlConnection(conn))
+        {
+            string query = "select count(*) from Customers where v_Email = @Email and v_Password = @Password";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@Password", password);
+            
+            con.Open();
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            if (count > 0)
+            {
+                string fetchquery = "select c_CustomerID from Customers where v_Email = @Email and v_Password = @Password";
+                SqlCommand cmd1 = new SqlCommand(fetchquery, con);
+                cmd1.Parameters.AddWithValue("@Email", email);
+                cmd1.Parameters.AddWithValue("@Password", password);
+                con.Open();
+                SqlDataReader reader = cmd1.ExecuteReader(); 
+                while (reader.Read())
+                {
+                    custId = Convert.ToInt64(reader["c_CustomerID"]);
+                }
+                con.Close();
+                return true;
+                
+            }
+            
+        }
+
+        return false;
+
+    }
+
+    public List<Account> GetAccounts(string custId)
+    {
+        Console.WriteLine(custId); // IT WASNT PICKING UP THE FUCKING CUSTOMER_ID
+        List<Account> accounts = new List<Account>();
+
+        using (SqlConnection con = new SqlConnection(conn))
+        {
+            string query = "select c_AccountID, v_AccountType, c_CustomerID from Accounts where c_CustomerID = @c_CustomerID";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@c_CustomerID", custId);
+            
+            con.Open();
+            
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                accounts.Add(new Account
+                {
+                    AccountID = reader["c_AccountID"].ToString(),
+                    CustomerID = reader["c_CustomerID"].ToString(),
+                    AccountType = reader["v_AccountType"].ToString(),
+                    Balance = 0,
+                    PIN = "0"
+                });
+                Console.WriteLine($@"LOG: {reader["c_CustomerID"].ToString()}");
+            }
+            
+        }
+        Console.WriteLine(accounts.Count); // check list index #s
+        if (accounts.Count > 0)
+        {
+            foreach (Account account in accounts)
+            {
+                Console.WriteLine($"Account ID: {account.AccountID} | Account Type: {account.AccountType}");
+            }
+            Console.WriteLine("Account List Found?");
+            return accounts;
+        }
+        else
+        {
+            
+            throw new Exception("No Accounts found LMFAOOOOOOO");
+        }
+        
+    }
+     
+
     
     //********************FETCH LOGIN DATA************************
     
     public string GetCustomerID()
     {
         //TODO: fetch ID from login session
+       
         return "nothing yet";
     }
     
@@ -141,6 +239,7 @@ public class BankLogic
 
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {
+                cmd.Parameters.AddWithValue("@id", lastId);
                 cmd.Parameters.AddWithValue("@newId", newId);
                 cmd.ExecuteNonQuery();
             }
@@ -252,7 +351,7 @@ public class BankLogic
     //***********************CREATION*****************************
     
     //check customer and email 
-    public bool BCreateCustomer(Customer customer, string name, string email, string phone)
+    public bool BCreateCustomer(Customer customer, string fname, string email, string phone, string lname, string mname, string password)
     {
         //check first
         if (IsCustomerExist(customer.CustomerID))
@@ -266,23 +365,23 @@ public class BankLogic
             throw new Exception("Email already in use");
         }
 
-        if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name))
+        if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(fname) || string.IsNullOrEmpty(lname) || string.IsNullOrEmpty(mname) || string.IsNullOrEmpty(password))
         {
             throw new ArgumentException("All fields are required");
         }
         
         //generates id mrrp meow meow mrrp
-        long custId = GenerateCustId();
+        custId = GenerateCustId();
 
         var newCustomer = new Customer
         {
             CustomerID = custId.ToString(),
-            Name = name,
+            Name = fname,
             Email = email,
             Phone = phone,
-            LName = null,
-            MName = null,
-            Password = null
+            LName = lname,
+            MName = mname,
+            Password = password
         };
 
         //call now :333
@@ -302,13 +401,13 @@ public class BankLogic
         }
         catch (Exception ex)
         {
-            throw new Exception("Something fucked up and idk what it is :3333");
+            throw new Exception(ex.Message);
         }
         
     }
     
     //check customer, acc duplicate, and negative balance input
-    public bool BCreateAccount(Account account, string acctype, decimal balance, string password, string pin)
+    public bool BCreateAccount(Account account, string acctype, string pin, string customerID)
     {
         //checks
         if (!IsCustomerExist(account.CustomerID))
@@ -327,14 +426,14 @@ public class BankLogic
         }
         
         //generates id
-        long accId = GenerateAccId();
+        accId = GenerateAccId();
 
         var newAccount = new Account
         {
             AccountID = accId.ToString(),
-            CustomerID = null, //needs to refer to current login ID
+            CustomerID = customerID,
             AccountType = acctype,
-            Balance = balance,
+            Balance = 0,
             PIN = pin
         };
         

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging.Effects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,13 @@ namespace BankSystem_School
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Form1()
+        public Form1(string fname, string lname, string email)
         {
+            // name, email, balance
+            name.Text = $@"{fname} {lname}";
+            this.email.Text = email;
+            
+            balance.Text = "FETCH FROM ACCOUNT";
             InitializeComponent();
         }
 

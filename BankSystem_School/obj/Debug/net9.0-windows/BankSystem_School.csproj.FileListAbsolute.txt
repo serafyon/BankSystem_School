@@ -73,3 +73,5 @@ C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\refint\BankSyste
 C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\BankSystem_School.pdb
 C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\BankSystem_School.genruntimeconfig.cache
 C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\ref\BankSystem_School.dll
+C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\BankSystem_School.Form8.resources
+C:\BankSystem_School\BankSystem_School\obj\Debug\net9.0-windows\BankSystem_School.Welcome.resources

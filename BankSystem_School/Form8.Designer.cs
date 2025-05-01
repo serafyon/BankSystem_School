@@ -31,6 +31,7 @@
             label1 = new Label();
             withdraw = new Button();
             panel2 = new Panel();
+            label4 = new Label();
             label2 = new Label();
             textBox2 = new TextBox();
             label6 = new Label();
@@ -39,7 +40,6 @@
             textBox6 = new TextBox();
             textBox1 = new TextBox();
             label3 = new Label();
-            label4 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,6 +79,19 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(852, 50);
             panel2.TabIndex = 24;
+            panel2.Paint += panel2_Paint;
+            // 
+            // label4
+            // 
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(146, -13);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 49);
+            label4.TabIndex = 40;
+            label4.Text = "↼";
+            label4.Click += label4_Click;
             // 
             // label2
             // 
@@ -156,18 +169,6 @@
             label3.Size = new Size(162, 31);
             label3.TabIndex = 38;
             label3.Text = "New Password";
-            // 
-            // label4
-            // 
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(146, -13);
-            label4.Name = "label4";
-            label4.Size = new Size(68, 49);
-            label4.TabIndex = 40;
-            label4.Text = "↼";
-            label4.Click += label4_Click;
             // 
             // Form8
             // 
