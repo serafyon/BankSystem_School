@@ -2,7 +2,7 @@
 
 public class Customer
 {
-    // Deprecated, moved to Account
+   
     
     //TODO: Split Name to First Name, Last Name, M.I.
     public required string CustomerID { get; set; }  // c_Customer_ID char 5

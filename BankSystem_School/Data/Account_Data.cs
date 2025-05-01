@@ -167,6 +167,77 @@ public class Account_Data
         return account;
     }
     
+    /// <summary>
+    /// Fetches a selected account's details from database using supplied customer ID. Returns a List.
+    ///  </summary>
+    /// <param name="customerID">Must be supplied by frontend</param>
+    /// <returns>An Account Class with all details. Refer to using a list in result.</returns>
+    public List<Account> FetchAccountDetailSingle(string customerID, string accountID)
+    {
+        // supplied by frontend, will use the current customer ID and account ID in runtime:
+        string cID = customerID;
+        string aID = accountID;
+        // local supply
+        List<Account> account = new List<Account>();
+        
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            // selective query, will only get account of corresponding c_AccountID
+            string query = "SELECT * FROM Accounts WHERE c_CustomerID = @cID and c_AccountID = @aID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@cID", cID);
+            command.Parameters.AddWithValue("@aID", aID);
+            connection.Open();
+            
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                account.Add(new Account
+                {
+                    AccountID = (string)reader["c_AccountID"],
+                    CustomerID = (string)reader["c_CustomerID"],
+                    AccountType = (string)reader["v_AccountType"],
+                    Balance = Convert.ToDecimal(reader["d_Balance"]),
+                    PIN = (string)reader["v_PIN"] 
+                });
+            }
+            connection.Close();
+        }
+        return account;
+    }
+    
+    public List<Account> FetchAccountDetail_ACCID(string accID)
+    {
+        // supplied by frontend, will use the current account ID in runtime:
+        string acID = accID;
+        // local supply
+        List<Account> account = new List<Account>();
+        
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            // selective query, will only get account of corresponding c_AccountID
+            string query = "SELECT * FROM Accounts WHERE c_AccountID = @acID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@acID", acID);
+            connection.Open();
+            
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                account.Add(new Account
+                {
+                    AccountID = (string)reader["c_AccountID"],
+                    CustomerID = (string)reader["c_CustomerID"],
+                    AccountType = (string)reader["v_AccountType"],
+                    Balance = Convert.ToDecimal(reader["d_Balance"]),
+                    PIN = (string)reader["PIN"]
+                });
+            }
+            connection.Close();
+        }
+        return account;
+    }
+    
     //TODO ( sorry brain hurty, figured i can't use the same things unless you can compactify it. if you can, go ahead, sure! :D )
     //I do THINK if you can manage to compute and make a transaction object via windows forms and store things temporarily
     //using hidden textboxes or variables within form.cs's, you can basically kill some of the lines here with it.
@@ -281,4 +352,26 @@ public class Account_Data
             return command.ExecuteNonQuery() > 0;
         }
     }
+    
+    public string GetPinByAccID(string accID)
+    {
+        string pin = null;
+
+        using (SqlConnection con = new SqlConnection(_conn))
+        {
+                string query = "select v_PIN from Accounts where c_AccountID = @c_AccountID";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@c_AccountID", accID);
+                con.Open();
+
+                var res = command.ExecuteScalar();
+                if (res != null)
+                {
+                    pin = res.ToString();
+                }
+        }
+        return pin;
+    }
 }
+
+        

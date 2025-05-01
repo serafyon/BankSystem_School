@@ -89,7 +89,7 @@ public class BankLogic
 
         using (SqlConnection con = new SqlConnection(conn))
         {
-            string query = "select c_AccountID, v_AccountType, c_CustomerID from Accounts where c_CustomerID = @c_CustomerID";
+            string query = "select c_AccountID, v_AccountType, c_CustomerID, v_PIN from Accounts where c_CustomerID = @c_CustomerID";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@c_CustomerID", custId);
             
@@ -104,7 +104,7 @@ public class BankLogic
                     CustomerID = reader["c_CustomerID"].ToString(),
                     AccountType = reader["v_AccountType"].ToString(),
                     Balance = 0,
-                    PIN = "0"
+                    PIN = reader["v_PIN"].ToString()
                 });
                 Console.WriteLine($@"LOG: {reader["c_CustomerID"].ToString()}");
             }
@@ -118,7 +118,7 @@ public class BankLogic
                 Console.WriteLine($"Account ID: {account.AccountID} | Account Type: {account.AccountType}");
             }
             Console.WriteLine("Account List Found?");
-            return accounts;
+            return accounts ?? new List<Account>();
         }
         else
         {

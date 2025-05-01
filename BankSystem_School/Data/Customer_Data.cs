@@ -209,9 +209,9 @@ public class Customer_Data
                 customers.Add(new Customer
                 {
                     CustomerID = (string)reader["c_CustomerID"],
-                    LName = (string)reader["LName"],
+                    LName = (string)reader["v_LName"],
                     Name = (string)reader["v_Name"],
-                    MName = (string)reader["MName"],
+                    MName = (string)reader["v_MName"],
                     Email = (string)reader["v_Email"],
                     Phone = (string)reader["v_Phone"],
                     Password = (string)reader["v_Password"]

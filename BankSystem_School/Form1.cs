@@ -8,8 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankSystem_School.Data;
 using MaterialSkin;
 using MaterialSkin;
+using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic;
 
 namespace BankSystem_School
 {
@@ -24,19 +27,57 @@ namespace BankSystem_School
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Form1(string fname, string lname, string email)
+        private void GetDetails()
         {
+            Account_Data acdata = new Account_Data();
+            //accID = acdata.
+        }
+
+        private string accId;
+        private string cId;
+        public Form1(string accId, string cId)
+        {
+            this.accId = accId;
+            this.cId = cId;
             // name, email, balance
-            name.Text = $@"{fname} {lname}";
-            this.email.Text = email;
+            //name.Text = $@"{fname} {lname}";
+            //this.email.Text = email;
             
-            balance.Text = "FETCH FROM ACCOUNT";
+            
+            
             InitializeComponent();
+            // balance.Text = ;
+            
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Customer_Data cdata = new Customer_Data();
 
+            List<string> temp = new List<string>();
+            foreach (var data in cdata.GetCustomerInfo(cId))
+            {
+               
+                temp.Add(data.Name);
+                temp.Add(data.Email);
+            }
+            
+            name.Text = temp[0];
+            email.Text = temp[1];
+            
+            Account_Data acdata = new Account_Data();
+            
+            List<string> temp1 = new List<string>();
+            foreach (var data in acdata.FetchAccountDetailSingle(cId, accId))
+            {
+                temp1.Add(data.Balance.ToString());
+                temp1.Add(data.AccountID);
+                temp1.Add(data.AccountType);
+                temp1.Add(data.PIN);
+            }
+            
+            balance.Text = temp1[0];
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
