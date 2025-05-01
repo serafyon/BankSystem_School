@@ -26,6 +26,41 @@ namespace BankSystem_School
         }
         public Form7(string custId)
         {
+            setCID(custId);
+            InitializeComponent();
+            
+        }
+
+        //submit data
+        private void withdraw_MouseClick(object sender, MouseEventArgs e)
+        {
+            BankLogic bankLogic = new BankLogic();
+            Console.WriteLine($"Pin debug: {textBox2.Text}");
+            Account account = new Account
+            {
+                AccountID = bankLogic.GenerateAccId().ToString(),
+                CustomerID = getCID(),
+                AccountType = comboBox1.SelectedValue.ToString(),
+                Balance = 0,
+                PIN = textBox2.Text
+            };
+            
+            if (bankLogic.BCreateAccount(account, comboBox1.Text, textBox2.Text, getCID()))
+            {
+                MessageBox.Show("Successfully Created Account!");
+                Form6 f6 = new Form6(getCID());
+                f6.Refresh();
+                f6.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Account Not Created");
+            }
+        }
+
+        private void Form7_Load(object sender, EventArgs e)
+        {
             List <string> accountType = new List<string>
             {
                 "Savings",
@@ -35,33 +70,12 @@ namespace BankSystem_School
                 "Investment",
                 "Retirement"
             };
-            setCID(custId);
+            
             comboBox1.DataSource = accountType;
-            
-            
-            InitializeComponent();
+
+
         }
 
-        //submit data
-        private void withdraw_MouseClick(object sender, MouseEventArgs e)
-        {
-            BankLogic bankLogic = new BankLogic();
-            Account account = new Account
-            {
-                AccountID = null,
-                CustomerID = null,
-                AccountType = null,
-                Balance = 0,
-                PIN = null
-            };
-            if (bankLogic.BCreateAccount(account, comboBox1.Text, textBox2.Text, getCID()))
-            {
-                MessageBox.Show("Account Created :3");
-            }
-            else
-            {
-                MessageBox.Show("Account Not Created");
-            }
-        }
+
     }
 }

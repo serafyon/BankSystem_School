@@ -101,8 +101,9 @@ namespace BankSystem_School
 
         private void withdraw_MouseHover(object sender, EventArgs e)
         {
-            Console.WriteLine(comboBox1.ValueMember);
-            Console.WriteLine(comboBox1.SelectedValue.ToString());
+            //Console.WriteLine(comboBox1.ValueMember);
+            
+            //Console.WriteLine(comboBox1.SelectedValue.ToString());
             
         }
 
@@ -115,16 +116,25 @@ namespace BankSystem_School
             string prompt = Interaction.InputBox("Enter your 4-digit PIN", "Security", "", -1, -1);
             if (prompt == acdata.GetPinByAccID(comboBox1.SelectedValue.ToString())) //fetch PIN from idk
             {
-                MessageBox.Show("Ok gtfo idk");
+                MessageBox.Show("Success!");
+                Form1 f1 = new Form1(accId, getCID()); // we got acc id here just needs to re fetch customer id
+                this.Close();
+                f1.Show();
             }
             else
             {
-                MessageBox.Show("ermm wrong input");
+                MessageBox.Show("Incorrect PIN!");
             }
             
-            Form1 f1 = new Form1(accId, getCID()); // we got acc id here just needs to re fetch customer id
-            this.Close();
-            f1.Show();
+            
+        }
+
+        // create account
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form7 f7 = new Form7(getCID());
+            f7.Show();
+            Hide();
         }
     }
 }

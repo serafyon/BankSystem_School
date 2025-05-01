@@ -120,12 +120,8 @@ public class BankLogic
             Console.WriteLine("Account List Found?");
             return accounts ?? new List<Account>();
         }
-        else
-        {
-            
-            throw new Exception("No Accounts found LMFAOOOOOOO");
-        }
-        
+
+        return accounts ?? new List<Account>();
     }
      
 
@@ -206,6 +202,7 @@ public class BankLogic
 
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {  
+                cmd.Parameters.AddWithValue("@id", 1);
                 cmd.Parameters.AddWithValue("@newId", newId);
                 cmd.ExecuteNonQuery();
             }
@@ -239,7 +236,7 @@ public class BankLogic
 
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {
-                cmd.Parameters.AddWithValue("@id", lastId);
+                cmd.Parameters.AddWithValue("@id", 1);
                 cmd.Parameters.AddWithValue("@newId", newId);
                 cmd.ExecuteNonQuery();
             }
@@ -272,6 +269,7 @@ public class BankLogic
 
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {
+                cmd.Parameters.AddWithValue("@id", 1);
                 cmd.Parameters.AddWithValue("@newId", newId);
                 cmd.ExecuteNonQuery();
             }

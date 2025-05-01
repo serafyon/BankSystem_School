@@ -51,7 +51,7 @@ public class Account_Data
             // fkquery validation
             //string fkquery = "select c_CustomerID from Customer where c_CustomerID=@c_CustomerID"; 
             string query =
-                "insert into Accounts (c_AccountID, c_CustomerID, v_AccountType, d_Balance) values (@c_AccountID, @c_CustomerID, @v_AccountType, @d_Balance)";
+                "insert into Accounts (c_AccountID, c_CustomerID, v_AccountType, d_Balance, v_PIN) values (@c_AccountID, @c_CustomerID, @v_AccountType, @d_Balance, @v_PIN)";
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
             //SqlCommand command2 = new SqlCommand(fkquery, connection);
@@ -60,6 +60,7 @@ public class Account_Data
             command.Parameters.AddWithValue("@c_AccountID", account.AccountID);
             command.Parameters.AddWithValue("@v_AccountType", account.AccountType);
             command.Parameters.AddWithValue("@d_Balance", account.Balance);
+            command.Parameters.AddWithValue("@v_PIN", account.PIN); //kms
 
 
             return command.ExecuteNonQuery() > 0;
@@ -95,6 +96,21 @@ public class Account_Data
             connection.Open();
             
             return command.ExecuteNonQuery() > 0;
+        }
+    }
+
+    public void DeleteAllAccountsByCustomerID(string customerID)
+    {
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            string query = "delete from Accounts where c_CustomerID = @c_CustomerID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@c_CustomerID", customerID);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            
+            Console.WriteLine($"Deleted {rowsAffected} accounts from customer {customerID}");
         }
     }
     

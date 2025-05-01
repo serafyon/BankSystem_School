@@ -12,6 +12,7 @@ using BankSystem_School.Data;
 using MaterialSkin;
 using MaterialSkin;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 
 namespace BankSystem_School
@@ -58,9 +59,10 @@ namespace BankSystem_School
             List<string> temp = new List<string>();
             foreach (var data in cdata.GetCustomerInfo(cId))
             {
-               
-                temp.Add(data.Name);
-                temp.Add(data.Email);
+               Console.WriteLine(data.Name);
+               Console.WriteLine(data.Email);
+               temp.Add(data.Name);
+               temp.Add(data.Email);
             }
             
             name.Text = temp[0];
@@ -76,8 +78,15 @@ namespace BankSystem_School
                 temp1.Add(data.AccountType);
                 temp1.Add(data.PIN);
             }
-            
-            balance.Text = temp1[0];
+
+            if (temp1[0].IsNullOrEmpty())
+            {
+                balance.Text = 0.ToString();
+            }
+            else
+            {
+                balance.Text = temp1[0];
+            }
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -127,6 +136,20 @@ namespace BankSystem_School
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // update acc info
+        private void update_MouseClick(object sender, MouseEventArgs e)
+        {
+            Form8 updateForm = new Form8(cId, accId);
+            updateForm.Show();
+            this.Close();
+            // remember to refresh to update data after updating
+        }
+
+        private void deposit_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

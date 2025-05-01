@@ -129,6 +129,7 @@
             button1.TabIndex = 20;
             button1.Text = "Select";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // label3
             // 
@@ -172,7 +173,7 @@
         private ComboBox comboBox1;
         private Label label2;
         private System.Windows.Forms.Button withdraw;
-        private Button button1;
+        private System.Windows.Forms.Button button1;
         private Label label3;
     }
 }

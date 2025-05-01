@@ -28,67 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            withdraw = new Button();
-            panel2 = new Panel();
-            label4 = new Label();
-            label2 = new Label();
-            textBox2 = new TextBox();
-            label6 = new Label();
-            textBox5 = new TextBox();
-            label7 = new Label();
-            textBox6 = new TextBox();
-            textBox1 = new TextBox();
-            label3 = new Label();
+            label1 = new System.Windows.Forms.Label();
+            submit = new System.Windows.Forms.Button();
+            panel2 = new System.Windows.Forms.Panel();
+            label4 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            email = new System.Windows.Forms.TextBox();
+            label6 = new System.Windows.Forms.Label();
+            phone = new System.Windows.Forms.TextBox();
+            label7 = new System.Windows.Forms.Label();
+            oldpass = new System.Windows.Forms.TextBox();
+            newpass = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            delete = new System.Windows.Forms.Button();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(2, 0, 46);
-            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.LightGray;
-            label1.Location = new Point(381, 11);
+            label1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
+            label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label1.ForeColor = System.Drawing.Color.LightGray;
+            label1.Location = new System.Drawing.Point(381, 11);
             label1.Name = "label1";
-            label1.Size = new Size(107, 25);
+            label1.Size = new System.Drawing.Size(58, 12);
             label1.TabIndex = 0;
             label1.Text = "Update Info";
             // 
-            // withdraw
+            // submit
             // 
-            withdraw.BackColor = Color.FromArgb(2, 0, 46);
-            withdraw.Cursor = Cursors.Hand;
-            withdraw.FlatAppearance.BorderSize = 0;
-            withdraw.FlatStyle = FlatStyle.Flat;
-            withdraw.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            withdraw.ForeColor = Color.LightGray;
-            withdraw.Location = new Point(47, 612);
-            withdraw.Name = "withdraw";
-            withdraw.Size = new Size(488, 83);
-            withdraw.TabIndex = 27;
-            withdraw.Text = "Submit";
-            withdraw.UseVisualStyleBackColor = false;
+            submit.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
+            submit.Cursor = System.Windows.Forms.Cursors.Hand;
+            submit.FlatAppearance.BorderSize = 0;
+            submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            submit.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            submit.ForeColor = System.Drawing.Color.LightGray;
+            submit.Location = new System.Drawing.Point(48, 519);
+            submit.Name = "submit";
+            submit.Size = new System.Drawing.Size(488, 83);
+            submit.TabIndex = 27;
+            submit.Text = "Submit";
+            submit.UseVisualStyleBackColor = false;
+            submit.Click += submit_Click;
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(2, 0, 46);
+            panel2.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(-134, -1);
+            panel2.Location = new System.Drawing.Point(-134, -1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(852, 50);
+            panel2.Size = new System.Drawing.Size(852, 50);
             panel2.TabIndex = 24;
             panel2.Paint += panel2_Paint;
             // 
             // label4
             // 
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.LightGray;
-            label4.Location = new Point(146, -13);
+            label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            label4.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label4.ForeColor = System.Drawing.Color.LightGray;
+            label4.Location = new System.Drawing.Point(146, -13);
             label4.Name = "label4";
-            label4.Size = new Size(68, 49);
+            label4.Size = new System.Drawing.Size(68, 49);
             label4.TabIndex = 40;
             label4.Text = "↼";
             label4.Click += label4_Click;
@@ -96,98 +98,114 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.LightGray;
-            label2.Location = new Point(69, 76);
+            label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label2.ForeColor = System.Drawing.Color.LightGray;
+            label2.Location = new System.Drawing.Point(69, 76);
             label2.Name = "label2";
-            label2.Size = new Size(70, 31);
+            label2.Size = new System.Drawing.Size(36, 15);
             label2.TabIndex = 32;
             label2.Text = "Email";
             label2.Click += label2_Click;
             // 
-            // textBox2
+            // email
             // 
-            textBox2.Location = new Point(69, 110);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(441, 27);
-            textBox2.TabIndex = 33;
+            email.Location = new System.Drawing.Point(69, 110);
+            email.Name = "email";
+            email.Size = new System.Drawing.Size(441, 27);
+            email.TabIndex = 33;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.LightGray;
-            label6.Location = new Point(69, 150);
+            label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label6.ForeColor = System.Drawing.Color.LightGray;
+            label6.Location = new System.Drawing.Point(69, 150);
             label6.Name = "label6";
-            label6.Size = new Size(98, 31);
+            label6.Size = new System.Drawing.Size(51, 15);
             label6.TabIndex = 34;
             label6.Text = "Phone #";
             // 
-            // textBox5
+            // phone
             // 
-            textBox5.Location = new Point(69, 184);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(441, 27);
-            textBox5.TabIndex = 35;
+            phone.Location = new System.Drawing.Point(69, 184);
+            phone.Name = "phone";
+            phone.Size = new System.Drawing.Size(441, 27);
+            phone.TabIndex = 35;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.LightGray;
-            label7.Location = new Point(69, 335);
+            label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label7.ForeColor = System.Drawing.Color.LightGray;
+            label7.Location = new System.Drawing.Point(69, 335);
             label7.Name = "label7";
-            label7.Size = new Size(153, 31);
+            label7.Size = new System.Drawing.Size(79, 15);
             label7.TabIndex = 36;
             label7.Text = "Old Password";
             // 
-            // textBox6
+            // oldpass
             // 
-            textBox6.Location = new Point(69, 369);
-            textBox6.Name = "textBox6";
-            textBox6.PasswordChar = '*';
-            textBox6.Size = new Size(441, 27);
-            textBox6.TabIndex = 37;
-            textBox6.UseSystemPasswordChar = true;
+            oldpass.Location = new System.Drawing.Point(69, 369);
+            oldpass.Name = "oldpass";
+            oldpass.PasswordChar = '*';
+            oldpass.Size = new System.Drawing.Size(441, 27);
+            oldpass.TabIndex = 37;
+            oldpass.UseSystemPasswordChar = true;
             // 
-            // textBox1
+            // newpass
             // 
-            textBox1.Location = new Point(69, 442);
-            textBox1.Name = "textBox1";
-            textBox1.PasswordChar = '*';
-            textBox1.Size = new Size(441, 27);
-            textBox1.TabIndex = 39;
-            textBox1.UseSystemPasswordChar = true;
+            newpass.Location = new System.Drawing.Point(69, 442);
+            newpass.Name = "newpass";
+            newpass.PasswordChar = '*';
+            newpass.Size = new System.Drawing.Size(441, 27);
+            newpass.TabIndex = 39;
+            newpass.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.LightGray;
-            label3.Location = new Point(69, 408);
+            label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            label3.ForeColor = System.Drawing.Color.LightGray;
+            label3.Location = new System.Drawing.Point(69, 408);
             label3.Name = "label3";
-            label3.Size = new Size(162, 31);
+            label3.Size = new System.Drawing.Size(84, 15);
             label3.TabIndex = 38;
             label3.Text = "New Password";
             // 
+            // delete
+            // 
+            delete.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
+            delete.Cursor = System.Windows.Forms.Cursors.Hand;
+            delete.FlatAppearance.BorderSize = 0;
+            delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            delete.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+            delete.ForeColor = System.Drawing.Color.Brown;
+            delete.Location = new System.Drawing.Point(48, 626);
+            delete.Name = "delete";
+            delete.Size = new System.Drawing.Size(488, 83);
+            delete.TabIndex = 27;
+            delete.Text = "Delete Account";
+            delete.UseVisualStyleBackColor = false;
+            delete.Click += delete_Click;
+            // 
             // Form8
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(10, 10, 56);
-            ClientSize = new Size(584, 761);
-            Controls.Add(textBox1);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(((int)((byte)10)), ((int)((byte)10)), ((int)((byte)56)));
+            ClientSize = new System.Drawing.Size(584, 761);
+            Controls.Add(newpass);
             Controls.Add(label3);
-            Controls.Add(textBox6);
+            Controls.Add(oldpass);
             Controls.Add(label7);
-            Controls.Add(textBox5);
+            Controls.Add(phone);
             Controls.Add(label6);
-            Controls.Add(textBox2);
+            Controls.Add(email);
             Controls.Add(label2);
-            Controls.Add(withdraw);
+            Controls.Add(delete);
+            Controls.Add(submit);
             Controls.Add(panel2);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "Form8";
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Text = "Form8";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -195,18 +213,20 @@
             PerformLayout();
         }
 
+        private System.Windows.Forms.Button delete;
+
         #endregion
 
         private Label label1;
-        private Button withdraw;
+        private System.Windows.Forms.Button submit;
         private Panel panel2;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox email;
         private Label label6;
-        private TextBox textBox5;
+        private TextBox phone;
         private Label label7;
-        private TextBox textBox6;
-        private TextBox textBox1;
+        private TextBox oldpass;
+        private TextBox newpass;
         private Label label3;
         private Label label4;
     }

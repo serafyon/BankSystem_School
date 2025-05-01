@@ -89,14 +89,14 @@ public class Customer_Data
     }
     
     // customer table mutator (delete)
-    public bool DeleteCustomer(Customer customer)
+    public bool DeleteCustomer(string customerID)
     {
         using (SqlConnection connection = new SqlConnection(_conn))
         {
             string query =
                 "delete from Customers where c_CustomerID = @id";
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@id", customer.CustomerID);
+            command.Parameters.AddWithValue("@id", customerID);
             connection.Open();
             
             return command.ExecuteNonQuery() > 0;
@@ -221,4 +221,41 @@ public class Customer_Data
         }
         return customers;
     }
+    
+        /// <summary>
+    /// Calls upon the information of the customer provided it gets the customer ID and modifies the database
+    /// Data required: Customer ID, Email, Phone, Password
+    /// </summary>
+    /// <param name="customerID">Should be fetched from frontend.</param>
+    /// <param name="newcustomerData">Should be fetched from frontend. Need to require everything</param>
+    /// <returns>A list containing everything from the usual fetch, but depends on the ID.</returns>
+    public bool SetCustomerInfo(string customerID, Customer newcustomerData)
+    {
+        List<Customer> customers = new List<Customer>();
+        using (SqlConnection connection = new SqlConnection(_conn))
+        {
+            // SqlCommand command = new SqlCommand(query, connection);
+            // command.Parameters.AddWithValue("@id", customer.CustomerID);
+            // command.Parameters.AddWithValue("@lname", customer.LName);
+            // command.Parameters.AddWithValue("@name", customer.Name);
+            // command.Parameters.AddWithValue("@mname", customer.MName);
+            // command.Parameters.AddWithValue("@email", customer.Email);
+            // command.Parameters.AddWithValue("@phone", customer.Phone);
+            // command.Parameters.AddWithValue("@password", customer.Password);
+            // connection.Open();
+            //
+            // return command.ExecuteNonQuery() > 0;
+            // "update Customers set v_Name = @name, v_Email = @email, v_Phone = @phone, v_Password = @password where c_CustomerID = @id"
+            string query = "UPDATE Customers SET v_Email = @v_Email, v_Phone = @v_Phone, v_Password = @v_Password WHERE c_CustomerID = @customerID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@customerID", customerID);
+            command.Parameters.AddWithValue("@v_Email", newcustomerData.Email);
+            command.Parameters.AddWithValue("@v_Phone", newcustomerData.Phone);
+            command.Parameters.AddWithValue("@v_Password", newcustomerData.Password);
+            connection.Open();
+            return command.ExecuteNonQuery() > 0;
+        }
+    }
+
 }
+
