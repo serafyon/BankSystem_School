@@ -11,8 +11,16 @@ using BankSystem_School.Model;
 
 namespace BankSystem_School
 {
-    public partial class Form7: Form
+    public partial class Form7 : Form
     {
+        const uint WM_NCLBUTTONDOWN = 0xA1;
+        const uint HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         private string cid;
 
         private void setCID(string cid)
@@ -28,7 +36,7 @@ namespace BankSystem_School
         {
             setCID(custId);
             InitializeComponent();
-            
+
         }
 
         //submit data
@@ -44,7 +52,7 @@ namespace BankSystem_School
                 Balance = 0,
                 PIN = textBox2.Text
             };
-            
+
             if (bankLogic.BCreateAccount(account, comboBox1.Text, textBox2.Text, getCID()))
             {
                 MessageBox.Show("Successfully Created Account!");
@@ -61,7 +69,7 @@ namespace BankSystem_School
 
         private void Form7_Load(object sender, EventArgs e)
         {
-            List <string> accountType = new List<string>
+            List<string> accountType = new List<string>
             {
                 "Savings",
                 "Checking",
@@ -70,12 +78,41 @@ namespace BankSystem_School
                 "Investment",
                 "Retirement"
             };
-            
+
             comboBox1.DataSource = accountType;
 
 
         }
 
 
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Form6 f6 = new Form6(getCID());
+            f6.Show();
+            this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, (int)WM_NCLBUTTONDOWN, (int)HT_CAPTION, 0);
+            }
+
+        }
     }
 }

@@ -28,12 +28,6 @@ namespace BankSystem_School
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private void GetDetails()
-        {
-            Account_Data acdata = new Account_Data();
-            //accID = acdata.
-        }
-
         private string accId;
         private string cId;
         public Form1(string accId, string cId)
@@ -63,9 +57,10 @@ namespace BankSystem_School
                Console.WriteLine(data.Email);
                temp.Add(data.Name);
                temp.Add(data.Email);
+               temp.Add(data.LName);
             }
             
-            name.Text = temp[0];
+            name.Text = $"{temp[0]} {temp[2]}";
             email.Text = temp[1];
             
             Account_Data acdata = new Account_Data();

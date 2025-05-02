@@ -28,102 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new System.Windows.Forms.Panel();
-            pinBox = new System.Windows.Forms.TextBox();
-            label4 = new System.Windows.Forms.Label();
-            desiredBalance = new System.Windows.Forms.TextBox();
-            label6 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            deposit = new System.Windows.Forms.Button();
-            panel2 = new System.Windows.Forms.Panel();
-            label8 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            name = new System.Windows.Forms.Label();
-            email = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
-            balance = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
+            panel1 = new Panel();
+            pinBox = new TextBox();
+            label4 = new Label();
+            desiredBalance = new TextBox();
+            label6 = new Label();
+            label3 = new Label();
+            deposit = new Button();
+            panel2 = new Panel();
+            label8 = new Label();
+            label1 = new Label();
+            dollarsign = new Label();
+            label7 = new Label();
+            balance = new Label();
+            label5 = new Label();
+            email = new Label();
+            name = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)10)), ((int)((byte)10)), ((int)((byte)56)));
+            panel1.BackColor = Color.FromArgb(10, 10, 56);
             panel1.Controls.Add(pinBox);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(desiredBalance);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(deposit);
-            panel1.Location = new System.Drawing.Point(249, 0);
+            panel1.Location = new Point(249, 0);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(573, 601);
+            panel1.Size = new Size(573, 601);
             panel1.TabIndex = 0;
             // 
             // pinBox
             // 
-            pinBox.Location = new System.Drawing.Point(29, 420);
+            pinBox.Location = new Point(32, 421);
             pinBox.Name = "pinBox";
             pinBox.PasswordChar = '*';
-            pinBox.Size = new System.Drawing.Size(444, 27);
+            pinBox.Size = new Size(444, 27);
             pinBox.TabIndex = 9;
             pinBox.Text = "0000";
             pinBox.UseSystemPasswordChar = true;
             pinBox.TextChanged += textBox2_TextChanged;
+            pinBox.KeyPress += pinBox_KeyPress;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new System.Drawing.Font("Segoe UI", 9.216001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label4.ForeColor = System.Drawing.Color.LightGray;
-            label4.Location = new System.Drawing.Point(32, 353);
+            label4.Font = new Font("Segoe UI", 14F);
+            label4.ForeColor = Color.LightGray;
+            label4.Location = new Point(29, 365);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(125, 21);
+            label4.Size = new Size(191, 32);
             label4.TabIndex = 8;
             label4.Text = "Security Pincode";
             // 
             // desiredBalance
             // 
-            desiredBalance.Location = new System.Drawing.Point(32, 130);
+            desiredBalance.Location = new Point(32, 130);
             desiredBalance.Name = "desiredBalance";
-            desiredBalance.Size = new System.Drawing.Size(441, 27);
+            desiredBalance.Size = new Size(441, 27);
             desiredBalance.TabIndex = 7;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Segoe UI", 5.5296F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label6.ForeColor = System.Drawing.Color.LightGray;
-            label6.Location = new System.Drawing.Point(479, 130);
+            label6.Font = new Font("Segoe UI", 12F);
+            label6.ForeColor = Color.LightGray;
+            label6.Location = new Point(479, 130);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(24, 12);
+            label6.Size = new Size(51, 28);
             label6.TabIndex = 1;
             label6.Text = "USD";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Segoe UI", 9.216001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label3.ForeColor = System.Drawing.Color.LightGray;
-            label3.Location = new System.Drawing.Point(32, 71);
+            label3.Font = new Font("Segoe UI", 14F);
+            label3.ForeColor = Color.LightGray;
+            label3.Location = new Point(29, 74);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(120, 21);
+            label3.Size = new Size(184, 32);
             label3.TabIndex = 6;
             label3.Text = "Desired Balance";
             // 
             // deposit
             // 
-            deposit.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
-            deposit.Cursor = System.Windows.Forms.Cursors.Hand;
+            deposit.BackColor = Color.FromArgb(2, 0, 46);
+            deposit.Cursor = Cursors.Hand;
             deposit.FlatAppearance.BorderSize = 0;
-            deposit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            deposit.Font = new System.Drawing.Font("Segoe UI", 6.1440005F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            deposit.ForeColor = System.Drawing.Color.LightGray;
-            deposit.Location = new System.Drawing.Point(29, 479);
+            deposit.FlatStyle = FlatStyle.Flat;
+            deposit.Font = new Font("Segoe UI", 14F);
+            deposit.ForeColor = Color.LightGray;
+            deposit.Location = new Point(29, 479);
             deposit.Name = "deposit";
-            deposit.Size = new System.Drawing.Size(488, 83);
+            deposit.Size = new Size(488, 83);
             deposit.TabIndex = 0;
             deposit.Text = "Deposit";
             deposit.UseVisualStyleBackColor = false;
@@ -133,107 +136,130 @@
             // 
             panel2.Controls.Add(label8);
             panel2.Controls.Add(label1);
-            panel2.Location = new System.Drawing.Point(-13, -12);
+            panel2.Location = new Point(-13, -12);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(852, 60);
+            panel2.Size = new Size(852, 60);
             panel2.TabIndex = 0;
+            panel2.MouseDown += panel2_MouseDown;
             // 
             // label8
             // 
-            label8.Cursor = System.Windows.Forms.Cursors.Hand;
-            label8.Font = new System.Drawing.Font("Segoe UI", 14.438402F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label8.ForeColor = System.Drawing.Color.LightGray;
-            label8.Location = new System.Drawing.Point(25, -3);
+            label8.Cursor = Cursors.Hand;
+            label8.Font = new Font("Segoe UI", 20F);
+            label8.ForeColor = Color.LightGray;
+            label8.Location = new Point(15, 11);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(68, 49);
+            label8.Size = new Size(68, 38);
             label8.TabIndex = 41;
             label8.Text = "↼";
+            label8.Click += label8_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Segoe UI", 5.5296F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label1.ForeColor = System.Drawing.Color.LightGray;
-            label1.Location = new System.Drawing.Point(351, 21);
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.ForeColor = Color.LightGray;
+            label1.Location = new Point(382, 21);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(38, 12);
+            label1.Size = new Size(61, 20);
             label1.TabIndex = 0;
             label1.Text = "Deposit";
             // 
-            // label2
+            // dollarsign
             // 
-            label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Segoe UI", 9.216001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label2.ForeColor = System.Drawing.Color.LightGray;
-            label2.Location = new System.Drawing.Point(15, 71);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(74, 21);
-            label2.TabIndex = 1;
-            label2.Text = "Welcome";
-            // 
-            // name
-            // 
-            name.AutoSize = true;
-            name.Font = new System.Drawing.Font("Segoe UI", 10.137601F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            name.ForeColor = System.Drawing.Color.LightGray;
-            name.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            name.Location = new System.Drawing.Point(15, 112);
-            name.Name = "name";
-            name.Size = new System.Drawing.Size(107, 23);
-            name.TabIndex = 2;
-            name.Text = "Name Name";
-            name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // email
-            // 
-            email.AutoSize = true;
-            email.Font = new System.Drawing.Font("Segoe UI", 5.5296F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            email.ForeColor = System.Drawing.Color.LightGray;
-            email.Location = new System.Drawing.Point(20, 164);
-            email.Name = "email";
-            email.Size = new System.Drawing.Size(83, 12);
-            email.TabIndex = 1;
-            email.Text = "email@email.com";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("Segoe UI", 5.5296F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label5.ForeColor = System.Drawing.Color.LightGray;
-            label5.Location = new System.Drawing.Point(20, 280);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(0, 12);
-            label5.TabIndex = 3;
-            // 
-            // balance
-            // 
-            balance.Font = new System.Drawing.Font("Segoe UI", 9.216001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            balance.ForeColor = System.Drawing.Color.LightGray;
-            balance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            balance.Location = new System.Drawing.Point(15, 504);
-            balance.Name = "balance";
-            balance.Size = new System.Drawing.Size(231, 41);
-            balance.TabIndex = 4;
-            balance.Text = "$99999999999";
-            balance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            dollarsign.Font = new Font("Segoe UI", 15F);
+            dollarsign.ForeColor = Color.LightGray;
+            dollarsign.ImageAlign = ContentAlignment.MiddleLeft;
+            dollarsign.Location = new Point(17, 499);
+            dollarsign.Name = "dollarsign";
+            dollarsign.Size = new Size(25, 41);
+            dollarsign.TabIndex = 13;
+            dollarsign.Text = "$";
+            dollarsign.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Segoe UI", 5.5296F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label7.ForeColor = System.Drawing.Color.LightGray;
-            label7.Location = new System.Drawing.Point(20, 479);
+            label7.Font = new Font("Segoe UI", 9F);
+            label7.ForeColor = Color.LightGray;
+            label7.Location = new Point(17, 479);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(79, 12);
-            label7.TabIndex = 5;
+            label7.Size = new Size(119, 20);
+            label7.BackColor = System.Drawing.Color.Transparent;
+            label7.TabIndex = 12;
             label7.Text = "Account Balance";
+            // 
+            // balance
+            // 
+            balance.Font = new Font("Segoe UI", 15F);
+            balance.BackColor = System.Drawing.Color.Transparent;
+            balance.ForeColor = Color.LightGray;
+            balance.ImageAlign = ContentAlignment.MiddleLeft;
+            balance.Location = new Point(42, 499);
+            balance.Name = "balance";
+            balance.Size = new Size(198, 41);
+            balance.TabIndex = 11;
+            balance.Text = "BALANCE";
+            balance.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = System.Drawing.Color.Transparent;    
+            label5.Font = new Font("Segoe UI", 8.64F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.LightGray;
+            label5.Location = new Point(17, 280);
+            label5.Name = "label5";
+            label5.Size = new Size(0, 20);
+            label5.TabIndex = 10;
+            // 
+            // email
+            // 
+            email.AutoSize = true;
+            email.BackColor = System.Drawing.Color.Transparent;
+            email.Font = new Font("Segoe UI", 9F);
+            email.ForeColor = Color.LightGray;
+            email.Location = new Point(17, 164);
+            email.Name = "email";
+            email.Size = new Size(129, 20);
+            email.TabIndex = 7;
+            email.Text = "email@email.com";
+            // 
+            // name
+            // 
+            name.AutoSize = true;
+            name.BackColor = System.Drawing.Color.Transparent;
+            name.Font = new Font("Segoe UI", 16F);
+            name.ForeColor = Color.LightGray;
+            name.ImageAlign = ContentAlignment.MiddleLeft;
+            name.Location = new Point(12, 112);
+            name.Name = "name";
+            name.Size = new Size(166, 37);
+            name.TabIndex = 9;
+            name.Text = "Name Name";
+            name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.ForeColor = Color.LightGray;
+            label2.Location = new Point(12, 71);
+            label2.Name = "label2";
+            label2.Size = new Size(118, 35);
+            label2.TabIndex = 8;
+            label2.Text = "Welcome";
             // 
             // Form3
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
-            ClientSize = new System.Drawing.Size(800, 600);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(2, 0, 46);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(800, 600);
+            Controls.Add(dollarsign);
             Controls.Add(label7);
             Controls.Add(balance);
             Controls.Add(label5);
@@ -242,7 +268,9 @@
             Controls.Add(label2);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form3";
             Text = "Form1";
             Load += Form3_Load;
             panel1.ResumeLayout(false);
@@ -258,12 +286,6 @@
         private Panel panel1;
         private Panel panel2;
         private Label label1;
-        private Label label2;
-        private Label name;
-        private Label email;
-        private Label label5;
-        private Label balance;
-        private Label label7;
         private System.Windows.Forms.Button deposit;
         private Label label3;
         private TextBox pinBox;
@@ -271,5 +293,12 @@
         private TextBox desiredBalance;
         private Label label6;
         private Label label8;
+        private Label dollarsign;
+        private Label label7;
+        private Label balance;
+        private Label label5;
+        private Label email;
+        private Label name;
+        private Label label2;
     }
 }

@@ -13,8 +13,17 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BankSystem_School
 {
+
     public partial class Form8 : Form
     {
+        const uint WM_NCLBUTTONDOWN = 0xA1;
+        const uint HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         private string customerID;
         private string accID;
         public Form8(string customerId, string accId)
@@ -31,7 +40,9 @@ namespace BankSystem_School
 
         private void label4_Click(object sender, EventArgs e)
         {
-
+            Form1 f1 = new Form1(accID, customerID);
+            f1.Show();
+            this.Close();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -45,7 +56,7 @@ namespace BankSystem_School
             string t_phone = phone.Text;
             string t_old = oldpass.Text;
             string t_new = newpass.Text;
-            
+
             Customer_Data cdata = new Customer_Data();
             Customer customer = new Customer
             {
@@ -73,14 +84,14 @@ namespace BankSystem_School
             }
             else
             {
-                MessageBox.Show("Old and New Password cannot be the same."); 
+                MessageBox.Show("Old and New Password cannot be the same.");
             }
-            
+
         }
         int count = 0;
         private void delete_Click(object sender, EventArgs e)
         {
-           
+
             if (count == 0)
             {
                 delete.Text = "ARE YOU SURE?"; //https://tenor.com/eQQ2wj7R9Dz.gif
@@ -89,7 +100,7 @@ namespace BankSystem_School
             }
             else if (count == 1)
             {
-                delete.Text = "ARE YOU VERY SURE?"; 
+                delete.Text = "ARE YOU VERY SURE?";
                 count++;
                 Console.WriteLine(count);
             }
@@ -97,11 +108,11 @@ namespace BankSystem_School
             {
                 Customer_Data cdata = new Customer_Data();
                 Account_Data acdata = new Account_Data();
-                
+
                 acdata.DeleteAllTransactionsByAccountID(accID);
                 acdata.DeleteAllAccountsByCustomerID(customerID);
                 cdata.DeleteCustomer(customerID);
-                
+
                 MessageBox.Show("Deleted, thank you for using our services.");
                 Welcome w = new Welcome();
                 w.Refresh();
@@ -110,8 +121,22 @@ namespace BankSystem_School
             }
         }
 
-        private void Form8_Load(object sender, EventArgs e)
+        // allow only digits in the phone number field
+        private void phone_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, (int)WM_NCLBUTTONDOWN, (int)HT_CAPTION, 0);
+            }
         }
     }
 }

@@ -22,5 +22,11 @@
     <Compile Update="Form8.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TransparentTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Welcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

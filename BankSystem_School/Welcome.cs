@@ -1,5 +1,7 @@
 ﻿namespace BankSystem_School;
 
+
+
 public partial class Welcome : Form
 {
     
@@ -35,10 +37,7 @@ public partial class Welcome : Form
         Hide();
     }
 
-    private void panel2_Mouse(object sender, EventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
+   
 
     private void panel2_MouseDown(object sender, MouseEventArgs e)
     {

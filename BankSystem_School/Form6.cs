@@ -13,10 +13,17 @@ using Microsoft.VisualBasic;
 
 namespace BankSystem_School
 {
-    public partial class Form6: Form
+    public partial class Form6 : Form
     {
+        const uint WM_NCLBUTTONDOWN = 0xA1;
+        const uint HT_CAPTION = 0x2;
+       
 
-        
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         private string cid;
 
         private void setCID(string cid)
@@ -29,17 +36,17 @@ namespace BankSystem_School
         {
             Console.WriteLine($"GetCID flag {this.cid}");
             return cid;
-            
+
         }
-        
+
         public Form6(string custId)
         {
-            
-            setCID(custId);
-            
 
-            
-            
+            setCID(custId);
+
+
+
+
             InitializeComponent();
         }
 
@@ -50,10 +57,10 @@ namespace BankSystem_School
             {
                 // if shit hits the fan, this is the reason
                 Account sel = (Account)comboBox1.SelectedItem;
-                
+
                 string accountId = sel.AccountID;
                 string accountType = sel.AccountType;
-                
+
                 Console.WriteLine($@"Debug stuff {accountId} {accountType}");
             }
         }
@@ -76,15 +83,15 @@ namespace BankSystem_School
             Console.WriteLine($"this is a cid thingy {getCID()}");//debug line
             BankLogic bankLogic = new BankLogic();
             List<Account> accounts = bankLogic.GetAccounts(getCID());
-            
+
             List<string> temp = new List<string>();
             foreach (var account in accounts)
             {
                 temp.Add($"{account.AccountID} - {account.AccountType} ");
                 Console.WriteLine(temp[0]);
             }
-            
-            
+
+
             comboBox1.DataSource = accounts.Select(a => new
             {
                 Display = $"{a.AccountID} - {a.AccountType}",
@@ -93,21 +100,21 @@ namespace BankSystem_School
             comboBox1.DisplayMember = "Display";
             comboBox1.ValueMember = "Value";
             comboBox1.BindingContext = this.BindingContext;
-            
-            
-            
+
+
+
 
         }
 
         private void withdraw_MouseHover(object sender, EventArgs e)
         {
             //Console.WriteLine(comboBox1.ValueMember);
-            
+
             //Console.WriteLine(comboBox1.SelectedValue.ToString());
-            
+
         }
 
-        
+
         private void withdraw_MouseClick(object sender, EventArgs e)
         {
 
@@ -125,8 +132,8 @@ namespace BankSystem_School
             {
                 MessageBox.Show("Incorrect PIN!");
             }
-            
-            
+
+
         }
 
         // create account
@@ -135,6 +142,15 @@ namespace BankSystem_School
             Form7 f7 = new Form7(getCID());
             f7.Show();
             Hide();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, (int)WM_NCLBUTTONDOWN, (int)HT_CAPTION, 0);
+            }
         }
     }
 }

@@ -69,5 +69,14 @@ namespace BankSystem_School.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap circuit
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("circuit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

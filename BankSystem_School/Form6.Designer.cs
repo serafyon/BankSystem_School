@@ -28,87 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new System.Windows.Forms.Label();
-            panel2 = new System.Windows.Forms.Panel();
-            name = new System.Windows.Forms.Label();
-            comboBox1 = new System.Windows.Forms.ComboBox();
-            label2 = new System.Windows.Forms.Label();
-            withdraw = new System.Windows.Forms.Button();
-            button1 = new System.Windows.Forms.Button();
-            label3 = new System.Windows.Forms.Label();
+            label1 = new Label();
+            panel2 = new Panel();
+            name = new Label();
+            comboBox1 = new ComboBox();
+            label2 = new Label();
+            withdraw = new Button();
+            button1 = new Button();
+            label3 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
-            label1.Font = new System.Drawing.Font("Segoe UI", 6.912F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label1.ForeColor = System.Drawing.Color.LightGray;
-            label1.Location = new System.Drawing.Point(348, 11);
+            label1.BackColor = Color.FromArgb(2, 0, 46);
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.ForeColor = Color.LightGray;
+            label1.Location = new Point(348, 11);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(103, 15);
+            label1.Size = new Size(128, 20);
             label1.TabIndex = 0;
             label1.Text = "Account Selection";
             // 
             // panel2
             // 
-            panel2.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
+            panel2.BackColor = Color.FromArgb(2, 0, 46);
             panel2.Controls.Add(label1);
-            panel2.Location = new System.Drawing.Point(-26, -2);
+            panel2.Location = new Point(-26, -2);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(852, 50);
+            panel2.Size = new Size(852, 50);
             panel2.TabIndex = 14;
+            panel2.MouseDown += panel2_MouseDown;
             // 
             // name
             // 
             name.AutoSize = true;
-            name.Font = new System.Drawing.Font("Segoe UI", 12.672001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            name.ForeColor = System.Drawing.Color.LightGray;
-            name.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            name.Location = new System.Drawing.Point(12, 70);
+            name.Font = new Font("Segoe UI", 14F);
+            name.ForeColor = Color.LightGray;
+            name.ImageAlign = ContentAlignment.MiddleLeft;
+            name.Location = new Point(24, 73);
             name.Name = "name";
-            name.Size = new System.Drawing.Size(169, 30);
+            name.Size = new Size(189, 32);
             name.TabIndex = 15;
             name.Text = "Existing Account";
-            name.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            name.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // comboBox1
             // 
-            comboBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBox1.BackColor = Color.WhiteSmoke;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FlatStyle = FlatStyle.Flat;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "---Choose an Account---" });
-            comboBox1.Location = new System.Drawing.Point(24, 134);
+            comboBox1.Location = new Point(24, 134);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(235, 28);
+            comboBox1.Size = new Size(235, 28);
             comboBox1.TabIndex = 16;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new System.Drawing.Font("Segoe UI", 12.672001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label2.ForeColor = System.Drawing.Color.LightGray;
-            label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            label2.Location = new System.Drawing.Point(530, 70);
+            label2.Font = new Font("Segoe UI", 14F);
+            label2.ForeColor = Color.LightGray;
+            label2.ImageAlign = ContentAlignment.MiddleLeft;
+            label2.Location = new Point(530, 73);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(141, 30);
+            label2.Size = new Size(156, 32);
             label2.TabIndex = 17;
             label2.Text = "New Account";
-            label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // withdraw
             // 
-            withdraw.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
-            withdraw.Cursor = System.Windows.Forms.Cursors.Hand;
+            withdraw.BackColor = Color.FromArgb(2, 0, 46);
+            withdraw.Cursor = Cursors.Hand;
             withdraw.FlatAppearance.BorderSize = 0;
-            withdraw.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            withdraw.Font = new System.Drawing.Font("Segoe UI", 7.6800003F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            withdraw.ForeColor = System.Drawing.Color.LightGray;
-            withdraw.Location = new System.Drawing.Point(24, 178);
+            withdraw.FlatStyle = FlatStyle.Flat;
+            withdraw.Font = new Font("Segoe UI", 14F);
+            withdraw.ForeColor = Color.LightGray;
+            withdraw.Location = new Point(24, 178);
             withdraw.Name = "withdraw";
-            withdraw.Size = new System.Drawing.Size(235, 55);
+            withdraw.Size = new Size(235, 55);
             withdraw.TabIndex = 19;
             withdraw.Text = "Select";
             withdraw.UseVisualStyleBackColor = false;
@@ -117,15 +118,15 @@
             // 
             // button1
             // 
-            button1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)2)), ((int)((byte)0)), ((int)((byte)46)));
-            button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            button1.BackColor = Color.FromArgb(2, 0, 46);
+            button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button1.Font = new System.Drawing.Font("Segoe UI", 7.6800003F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            button1.ForeColor = System.Drawing.Color.LightGray;
-            button1.Location = new System.Drawing.Point(530, 178);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 14F);
+            button1.ForeColor = Color.LightGray;
+            button1.Location = new Point(530, 178);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(235, 55);
+            button1.Size = new Size(235, 55);
             button1.TabIndex = 20;
             button1.Text = "Select";
             button1.UseVisualStyleBackColor = false;
@@ -134,21 +135,21 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = System.Drawing.Color.FromArgb(((int)((byte)10)), ((int)((byte)10)), ((int)((byte)56)));
-            label3.Font = new System.Drawing.Font("Segoe UI", 8.832F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-            label3.ForeColor = System.Drawing.Color.LightGray;
-            label3.Location = new System.Drawing.Point(377, 85);
+            label3.BackColor = Color.FromArgb(10, 10, 56);
+            label3.Font = new Font("Segoe UI", 12F);
+            label3.ForeColor = Color.LightGray;
+            label3.Location = new Point(377, 85);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(23, 20);
+            label3.Size = new Size(31, 28);
             label3.TabIndex = 1;
             label3.Text = "or";
             // 
             // Form6
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.FromArgb(((int)((byte)10)), ((int)((byte)10)), ((int)((byte)56)));
-            ClientSize = new System.Drawing.Size(800, 259);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(10, 10, 56);
+            ClientSize = new Size(800, 259);
             Controls.Add(label3);
             Controls.Add(button1);
             Controls.Add(withdraw);
@@ -156,7 +157,8 @@
             Controls.Add(comboBox1);
             Controls.Add(name);
             Controls.Add(panel2);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "Form6";
             Text = "Form6";
             Load += Form6_Load;
             panel2.ResumeLayout(false);

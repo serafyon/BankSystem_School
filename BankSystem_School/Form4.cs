@@ -4,8 +4,17 @@ namespace BankSystem_School;
 
 public partial class Form4 : Form
 {
+    Welcome welcome = new();
+    const uint WM_NCLBUTTONDOWN = 0xA1;
+    const uint HT_CAPTION = 0x2;
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    public static extern bool ReleaseCapture();
     public Form4()
     {
+
         InitializeComponent();
     }
 
@@ -38,7 +47,7 @@ public partial class Form4 : Form
         string emailText = this.email.Text;
         string phoneText = this.phone.Text;
         string passwordText = pass.Text;
-        
+
         BankLogic bankLogic = new BankLogic();
         Customer customer = new Customer
         {
@@ -54,12 +63,41 @@ public partial class Form4 : Form
         if (bankLogic.BCreateCustomer(customer, fnameText, emailText, phoneText, lnameText, mnameText, passwordText))
         {
             MessageBox.Show("Customer created successfully");
-           
+
             this.Close();
             // attach customer id to form 6 AKA ACCOUNT SELECTION because i can
             Form6 f6 = new Form6(bankLogic.getCustId());
             f6.Show();
+
         }
     }
 
+    private void label2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void phone_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+        {
+            e.Handled = true;
+        }
+    }
+
+    private void label8_Click(object sender, EventArgs e)
+    {
+        welcome.Activate();
+        welcome.Show();
+        this.Close();
+    }
+
+    private void panel2_MouseDown(object sender, MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Left)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, (int)WM_NCLBUTTONDOWN, (int)HT_CAPTION, 0);
+        }
+    }
 }

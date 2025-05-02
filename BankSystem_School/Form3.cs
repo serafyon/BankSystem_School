@@ -13,8 +13,18 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BankSystem_School
 {
+
     public partial class Form3 : Form
     {
+        const uint WM_NCLBUTTONDOWN = 0xA1;
+        const uint HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+
         private string accId;
         private string cId;
         private string _balance;
@@ -24,8 +34,8 @@ namespace BankSystem_School
             this.cId = cId;
             InitializeComponent();
         }
-        
-        
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -64,8 +74,8 @@ namespace BankSystem_School
             {
                 MessageBox.Show("Incorrect PIN.");
             }
-                
-                
+
+
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -80,12 +90,12 @@ namespace BankSystem_School
                 temp.Add(data.Name);
                 temp.Add(data.Email);
             }
-            
+
             name.Text = temp[0];
             email.Text = temp[1];
-            
+
             Account_Data acdata = new Account_Data();
-            
+
             List<string> temp1 = new List<string>();
             foreach (var data in acdata.FetchAccountDetailSingle(cId, accId))
             {
@@ -95,7 +105,7 @@ namespace BankSystem_School
                 temp1.Add(data.PIN);
             }
             _balance = temp1[0];
-            
+
 
             if (temp1[0].IsNullOrEmpty())
             {
@@ -104,6 +114,31 @@ namespace BankSystem_School
             else
             {
                 balance.Text = temp1[0];
+            }
+        }
+
+
+        private void pinBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1(accId, cId);
+            form1.Show();
+            this.Close();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, (int)WM_NCLBUTTONDOWN, (int)HT_CAPTION, 0);
             }
         }
     }

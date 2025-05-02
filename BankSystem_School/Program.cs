@@ -115,24 +115,11 @@ static class Program
     static void Main()
     {
         
-        //Three Data Access tests complete
-        //TODO: Make Business Layer for Deposit and Withdrawal
-        /*TODO:
-         * Create Account
-         * Remove Customer
-         * Deposit
-         * Withdrawal
-         * View Acc Balance
-         * View Transaction History
-         *
-         * Actual functions for:
-         * CRUD customers & accounts
-         * 
-         */
+
 
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new Welcome());
+        Application.Run(new Load());
         
     }
 }

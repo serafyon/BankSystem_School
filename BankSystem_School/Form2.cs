@@ -116,12 +116,12 @@ namespace BankSystem_School
                 temp.Add(data.Name);
                 temp.Add(data.Email);
             }
-            
+
             name.Text = temp[0];
             email.Text = temp[1];
-            
+
             Account_Data acdata = new Account_Data();
-            
+
             List<string> temp1 = new List<string>();
             foreach (var data in acdata.FetchAccountDetailSingle(cId, accId))
             {
@@ -131,7 +131,7 @@ namespace BankSystem_School
                 temp1.Add(data.PIN);
             }
             _balance = temp1[0];
-            
+
 
             if (temp1[0].IsNullOrEmpty())
             {
@@ -141,6 +141,21 @@ namespace BankSystem_School
             {
                 balance.Text = temp1[0];
             }
+        }
+
+        private void pinBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1(accId, cId);
+            form1.Show();
+            this.Close();
         }
     }
 }
