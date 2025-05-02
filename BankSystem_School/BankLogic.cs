@@ -471,47 +471,78 @@ public class BankLogic
         return cdata.UpdateCustomer(customer);
     }
     // not finished lolll
-    
 
-
-    public bool MoneyDeposit(Account account, string accountId, decimal amount, string purpose, string transtype)
+    public bool UpdateBalance(string accId, decimal newBalance)
     {
-        var acc = IsAccountExist(accountId);
-        if (acc == null)
+        using (SqlConnection conn = new SqlConnection(this.conn))
         {
-            throw new Exception("Account does not exist");
+            string query = "UPDATE Accounts SET d_Balance = @newBalance WHERE c_AccountID = @accId";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            
+            cmd.Parameters.AddWithValue("@accId", accId);
+            cmd.Parameters.AddWithValue("@newBalance", newBalance);
+            
+            conn.Open();
+            int rowsAffected = cmd.ExecuteNonQuery();
+            
+            return rowsAffected > 0;
         }
-        long transId = GenerateTransId();
-        decimal afterBalance = account.Balance + amount;
+    }
 
-        var trans = new Transaction
+    public bool MoneyWithdraw(Account account, string accountId, decimal amount, string purpose)
+    {
+        if (account.Balance >= amount)
         {
-            TransactionID = transId.ToString(),
-            AccountID = GetAccID(GetCustomerID()), //fetch current account
-            TransactionType = transtype,
+            decimal prevBalance = account.Balance;
+            decimal newBalance = prevBalance + amount;
+            
+            bool withdrew = UpdateBalance(accountId, newBalance);
+
+            Transaction t_withdraw = new Transaction
+            {
+                TransactionID = GenerateTransId().ToString(),
+                AccountID = accountId,
+                TransactionType = "Withdraw",
+                Amount = amount,
+                PreviousBalance = prevBalance,
+                AfterBalance = newBalance,
+                Purpose = purpose,
+                TransactionDate = DateTime.Now
+            };
+            
+            trdata.AddTransaction(t_withdraw);
+            
+            return withdrew;
+        }
+        else
+        {
+            MessageBox.Show("Insufficient balance!");
+            return false;
+        }
+    }
+    public bool MoneyDeposit(Account account, string accountId, decimal amount, string purpose)
+    {
+        decimal prevBalance = account.Balance;
+        decimal newBalance = prevBalance + amount;
+        
+        bool deposited = UpdateBalance(accountId, newBalance);
+
+        Transaction t_deposit = new Transaction
+        {
+            TransactionID = GenerateTransId().ToString(),
+            AccountID = accountId,
+            TransactionType = "Deposit",
             Amount = amount,
-            PreviousBalance = 0, //fetch previous account's balance (checkBalance)
-            AfterBalance = afterBalance,
+            PreviousBalance = prevBalance,
+            AfterBalance = newBalance,
             Purpose = purpose,
             TransactionDate = DateTime.Now
         };
-
-        try
-        {
-            bool isAdded = trdata.AddTransaction(trans);
-
-            if (isAdded)
-            {
-                return true;
-            }
-            else
-            {
-                throw new Exception("Failed to add");
-            }
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Failed to add");
-        }
+        
+        
+        trdata.AddTransaction(t_deposit);
+        
+        return deposited;
     }
 }
+

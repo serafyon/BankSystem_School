@@ -51,7 +51,7 @@ public partial class Form4 : Form
             Password = passwordText
         };
 
-        if (bankLogic.BCreateCustomer(customer, fnameText, mnameText, lnameText, emailText, phoneText, passwordText))
+        if (bankLogic.BCreateCustomer(customer, fnameText, emailText, phoneText, lnameText, mnameText, passwordText))
         {
             MessageBox.Show("Customer created successfully");
            
