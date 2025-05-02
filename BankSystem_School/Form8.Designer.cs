@@ -184,7 +184,7 @@
             delete.Name = "delete";
             delete.Size = new System.Drawing.Size(488, 83);
             delete.TabIndex = 27;
-            delete.Text = "Delete Account";
+            delete.Text = "Delete Customer";
             delete.UseVisualStyleBackColor = false;
             delete.Click += delete_Click;
             // 

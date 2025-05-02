@@ -123,14 +123,14 @@ namespace BankSystem_School
 
         }
 
-        private void withdraw_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void logout_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Successfully logged out.");
+            Welcome welcome = new Welcome();
+            welcome.Show();
+            Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -143,13 +143,22 @@ namespace BankSystem_School
         {
             Form8 updateForm = new Form8(cId, accId);
             updateForm.Show();
-            this.Close();
+            this.Hide();
             // remember to refresh to update data after updating
         }
 
         private void deposit_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Form3 depositForm = new Form3(cId, accId);
+            depositForm.Show();
+            this.Hide();
+        }
+        
+        private void withdraw_Click(object sender, EventArgs e)
+        {
+            Form2 withdrawForm = new Form2(cId, accId);
+            withdrawForm.Show();
+            this.Hide();
         }
     }
 }

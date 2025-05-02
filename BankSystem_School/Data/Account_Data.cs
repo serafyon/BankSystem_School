@@ -99,6 +99,20 @@ public class Account_Data
         }
     }
 
+    public void DeleteAllTransactionsByAccountID(string accountID)
+    {
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            string query = "delete from Transactions where c_AccountID = @c_AccountID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@c_AccountID", accountID);
+            
+            connection.Open();
+            int rowsaffected = command.ExecuteNonQuery();
+            
+            Console.WriteLine($"Deleted {rowsaffected} transactions from account {accountID}");
+        }
+    }
     public void DeleteAllAccountsByCustomerID(string customerID)
     {
         using SqlConnection connection = new SqlConnection(_conn);
@@ -113,6 +127,8 @@ public class Account_Data
             Console.WriteLine($"Deleted {rowsAffected} accounts from customer {customerID}");
         }
     }
+    
+    
     
     // AccountID fetcher
     /// <summary>

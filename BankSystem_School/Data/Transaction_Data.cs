@@ -53,7 +53,7 @@ public class Transaction_Data
             // TODO: Fetch c_AccountID from current login session
             
             command.Parameters.AddWithValue("@c_AccountID", transaction.AccountID);
-            // command.Parameters.AddWithValue("@c_TransactionID", transaction.TransactionID);
+            command.Parameters.AddWithValue("@c_TransactionID", transaction.TransactionID);
             command.Parameters.AddWithValue("@dt_TransactionDate", transaction.TransactionDate);
             command.Parameters.AddWithValue("@v_TransactionType", transaction.TransactionType);
             command.Parameters.AddWithValue("@d_AfterBalance", transaction.AfterBalance);

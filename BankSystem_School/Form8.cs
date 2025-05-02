@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BankSystem_School.Data;
 using BankSystem_School.Model;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BankSystem_School
 {
@@ -65,9 +66,14 @@ namespace BankSystem_School
                 w.Show();
                 this.Close();
             }
+            else if (email.Text.IsNullOrEmpty() || phone.Text.IsNullOrEmpty() || oldpass.Text.IsNullOrEmpty() ||
+                     newpass.Text.IsNullOrEmpty())
+            {
+                MessageBox.Show("Please fill all the fields.");
+            }
             else
             {
-                MessageBox.Show("21 \n you stupid", "Whas 9 plus ten???"); // cannot be the same password
+                MessageBox.Show("Old and New Password cannot be the same."); 
             }
             
         }
@@ -91,6 +97,8 @@ namespace BankSystem_School
             {
                 Customer_Data cdata = new Customer_Data();
                 Account_Data acdata = new Account_Data();
+                
+                acdata.DeleteAllTransactionsByAccountID(accID);
                 acdata.DeleteAllAccountsByCustomerID(customerID);
                 cdata.DeleteCustomer(customerID);
                 
@@ -104,7 +112,6 @@ namespace BankSystem_School
 
         private void Form8_Load(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

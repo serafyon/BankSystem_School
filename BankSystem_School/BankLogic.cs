@@ -355,53 +355,58 @@ public class BankLogic
         if (IsCustomerExist(customer.CustomerID))
         {
             // call popup id exists
-            throw new Exception("Customer already exists");
+            MessageBox.Show("Customer already exists.");
         }
 
-        if (IsEmailExist(customer.Email))
+        else if (IsEmailExist(customer.Email))
         {
-            throw new Exception("Email already in use");
+            MessageBox.Show("Email already in use.");
         }
 
-        if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(fname) || string.IsNullOrEmpty(lname) || string.IsNullOrEmpty(mname) || string.IsNullOrEmpty(password))
+        else if (string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(fname) || string.IsNullOrEmpty(lname) || string.IsNullOrEmpty(mname) || string.IsNullOrEmpty(password))
         {
-            throw new ArgumentException("All fields are required");
+            MessageBox.Show("Please fill all fields.");
         }
-        
-        //generates id mrrp meow meow mrrp
-        custId = GenerateCustId();
 
-        var newCustomer = new Customer
+        else
         {
-            CustomerID = custId.ToString(),
-            Name = fname,
-            Email = email,
-            Phone = phone,
-            LName = lname,
-            MName = mname,
-            Password = password
-        };
+            //generates id mrrp meow meow mrrp
+            custId = GenerateCustId();
 
-        //call now :333
-        try
-        {
-            bool isAdded = cdata.AddCustomer(newCustomer);
-
-            if (isAdded)
+            var newCustomer = new Customer
             {
-                return true;
-            }
-            else
-            {
-                throw new Exception("Failed to add");
-            }
+                CustomerID = custId.ToString(),
+                Name = fname,
+                Email = email,
+                Phone = phone,
+                LName = lname,
+                MName = mname,
+                Password = password
+            };
 
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
+            //call now :333
+            try
+            {
+                bool isAdded = cdata.AddCustomer(newCustomer);
+
+                if (isAdded)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Failed to add");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         
+        }
+
+        return false;
     }
     
     //check customer, acc duplicate, and negative balance input
@@ -494,7 +499,7 @@ public class BankLogic
         if (account.Balance >= amount)
         {
             decimal prevBalance = account.Balance;
-            decimal newBalance = prevBalance + amount;
+            decimal newBalance = prevBalance - amount;
             
             bool withdrew = UpdateBalance(accountId, newBalance);
 
