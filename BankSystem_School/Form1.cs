@@ -8,8 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankSystem_School.Data;
 using MaterialSkin;
 using MaterialSkin;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 
 namespace BankSystem_School
 {
@@ -24,19 +28,65 @@ namespace BankSystem_School
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Form1(string fname, string lname, string email)
+        private void GetDetails()
         {
+            Account_Data acdata = new Account_Data();
+            //accID = acdata.
+        }
+
+        private string accId;
+        private string cId;
+        public Form1(string accId, string cId)
+        {
+            this.accId = accId;
+            this.cId = cId;
             // name, email, balance
-            name.Text = $@"{fname} {lname}";
-            this.email.Text = email;
+            //name.Text = $@"{fname} {lname}";
+            //this.email.Text = email;
             
-            balance.Text = "FETCH FROM ACCOUNT";
+            
+            
             InitializeComponent();
+            // balance.Text = ;
+            
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Customer_Data cdata = new Customer_Data();
 
+            List<string> temp = new List<string>();
+            foreach (var data in cdata.GetCustomerInfo(cId))
+            {
+               Console.WriteLine(data.Name);
+               Console.WriteLine(data.Email);
+               temp.Add(data.Name);
+               temp.Add(data.Email);
+            }
+            
+            name.Text = temp[0];
+            email.Text = temp[1];
+            
+            Account_Data acdata = new Account_Data();
+            
+            List<string> temp1 = new List<string>();
+            foreach (var data in acdata.FetchAccountDetailSingle(cId, accId))
+            {
+                temp1.Add(data.Balance.ToString());
+                temp1.Add(data.AccountID);
+                temp1.Add(data.AccountType);
+                temp1.Add(data.PIN);
+            }
+
+            if (temp1[0].IsNullOrEmpty())
+            {
+                balance.Text = 0.ToString();
+            }
+            else
+            {
+                balance.Text = temp1[0];
+            }
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -86,6 +136,20 @@ namespace BankSystem_School
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // update acc info
+        private void update_MouseClick(object sender, MouseEventArgs e)
+        {
+            Form8 updateForm = new Form8(cId, accId);
+            updateForm.Show();
+            this.Close();
+            // remember to refresh to update data after updating
+        }
+
+        private void deposit_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

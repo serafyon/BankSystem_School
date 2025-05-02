@@ -51,7 +51,7 @@ public class Account_Data
             // fkquery validation
             //string fkquery = "select c_CustomerID from Customer where c_CustomerID=@c_CustomerID"; 
             string query =
-                "insert into Accounts (c_AccountID, c_CustomerID, v_AccountType, d_Balance) values (@c_AccountID, @c_CustomerID, @v_AccountType, @d_Balance)";
+                "insert into Accounts (c_AccountID, c_CustomerID, v_AccountType, d_Balance, v_PIN) values (@c_AccountID, @c_CustomerID, @v_AccountType, @d_Balance, @v_PIN)";
             SqlCommand command = new SqlCommand(query, connection);
             connection.Open();
             //SqlCommand command2 = new SqlCommand(fkquery, connection);
@@ -60,6 +60,7 @@ public class Account_Data
             command.Parameters.AddWithValue("@c_AccountID", account.AccountID);
             command.Parameters.AddWithValue("@v_AccountType", account.AccountType);
             command.Parameters.AddWithValue("@d_Balance", account.Balance);
+            command.Parameters.AddWithValue("@v_PIN", account.PIN); //kms
 
 
             return command.ExecuteNonQuery() > 0;
@@ -95,6 +96,21 @@ public class Account_Data
             connection.Open();
             
             return command.ExecuteNonQuery() > 0;
+        }
+    }
+
+    public void DeleteAllAccountsByCustomerID(string customerID)
+    {
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            string query = "delete from Accounts where c_CustomerID = @c_CustomerID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@c_CustomerID", customerID);
+            
+            connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            
+            Console.WriteLine($"Deleted {rowsAffected} accounts from customer {customerID}");
         }
     }
     
@@ -198,7 +214,7 @@ public class Account_Data
                     CustomerID = (string)reader["c_CustomerID"],
                     AccountType = (string)reader["v_AccountType"],
                     Balance = Convert.ToDecimal(reader["d_Balance"]),
-                    PIN = (string)reader["PIN"]
+                    PIN = (string)reader["v_PIN"] 
                 });
             }
             connection.Close();
@@ -206,6 +222,37 @@ public class Account_Data
         return account;
     }
     
+    public List<Account> FetchAccountDetail_ACCID(string accID)
+    {
+        // supplied by frontend, will use the current account ID in runtime:
+        string acID = accID;
+        // local supply
+        List<Account> account = new List<Account>();
+        
+        using SqlConnection connection = new SqlConnection(_conn);
+        {
+            // selective query, will only get account of corresponding c_AccountID
+            string query = "SELECT * FROM Accounts WHERE c_AccountID = @acID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@acID", acID);
+            connection.Open();
+            
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                account.Add(new Account
+                {
+                    AccountID = (string)reader["c_AccountID"],
+                    CustomerID = (string)reader["c_CustomerID"],
+                    AccountType = (string)reader["v_AccountType"],
+                    Balance = Convert.ToDecimal(reader["d_Balance"]),
+                    PIN = (string)reader["PIN"]
+                });
+            }
+            connection.Close();
+        }
+        return account;
+    }
     
     //TODO ( sorry brain hurty, figured i can't use the same things unless you can compactify it. if you can, go ahead, sure! :D )
     //I do THINK if you can manage to compute and make a transaction object via windows forms and store things temporarily
@@ -329,4 +376,26 @@ public class Account_Data
             return flag == 2;
         }
     }
+    
+    public string GetPinByAccID(string accID)
+    {
+        string pin = null;
+
+        using (SqlConnection con = new SqlConnection(_conn))
+        {
+                string query = "select v_PIN from Accounts where c_AccountID = @c_AccountID";
+                SqlCommand command = new SqlCommand(query, con);
+                command.Parameters.AddWithValue("@c_AccountID", accID);
+                con.Open();
+
+                var res = command.ExecuteScalar();
+                if (res != null)
+                {
+                    pin = res.ToString();
+                }
+        }
+        return pin;
+    }
 }
+
+        
